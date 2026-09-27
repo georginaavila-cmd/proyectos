@@ -18,4 +18,5 @@ Herramienta de documentos de viaje de WAKANDA TRAVEL: cotización, confirmación
 | `referencia/sistema-diseno/tokens.css` | Colores, tipografía, espacios y sombras oficiales |
 | `referencia/sistema-diseno/fuentes/` | Lato y Jost en woff2 |
 | `referencia/sistema-diseno/legal.js` | Textos legales y datos corporativos, tal cual del voucher oficial |
+| `referencia/analisis-plugin-caminos.md` | Qué se toma del plugin de Caminos y qué cambia para Wakanda |
 | `referencia/sistema-diseno/componentes/` | Componentes y pantallas de muestra de los documentos (React) |
