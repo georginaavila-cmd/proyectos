@@ -1,0 +1,371 @@
+/* Wakanda Travel — webfonts
+   Lato: fuente oficial de títulos del manual de marca (disponible en Google Fonts).
+   Jost: SUSTITUTO de Century Gothic Bold. Century Gothic es una fuente licenciada
+   (Monotype) y NO existe en Google Fonts; Jost es la geométrica libre más cercana
+   (mismo esqueleto tipo Futura, 'a' de un piso, ojo grande). Ver readme.md → Tipografía. */
+/* cyrillic */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/Jost-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/Jost-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/Jost-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fuentes/Jost-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fuentes/Jost-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fuentes/Jost-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fuentes/Jost-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fuentes/Jost-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fuentes/Jost-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fuentes/Jost-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fuentes/Jost-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Jost';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fuentes/Jost-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/Lato-latin-ext-400.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fuentes/Lato-latin-400.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fuentes/Lato-latin-ext-700.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fuentes/Lato-latin-700.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("fuentes/Lato-latin-ext-900.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("fuentes/Lato-latin-900.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+:root {
+  /* ── Marca oficial (manual de marca, no negociable) ───────────────── */
+  --wk-blue: #3b6ca7;
+  --wk-teal: #00a8a8;
+  --wk-pink: #ecb2c0;
+  --wk-sand: #e7e38a;
+  --wk-white: #ffffff;
+
+  /* ── Escalas derivadas ─────────────────────────────────────────────── */
+  --wk-blue-900: #1f3f63;
+  --wk-blue-800: #2d5a8a;
+  --wk-blue-700: #3b6ca7;
+  --wk-blue-500: #5b87bc;
+  --wk-blue-300: #7a99c2;
+  --wk-blue-200: #c3d3e6;
+  --wk-blue-100: #e8eef6;
+  --wk-blue-050: #f4f7fb;
+
+  --wk-teal-800: #00706f;
+  --wk-teal-700: #008b8b;
+  --wk-teal-600: #00a8a8;
+  --wk-teal-300: #7fd3d3;
+  --wk-teal-100: #d9f2f2;
+  --wk-teal-050: #eefafa;
+
+  --wk-pink-400: #e08fa3;
+  --wk-pink-300: #ecb2c0;
+  --wk-pink-100: #fbeef1;
+
+  --wk-sand-400: #d4d97f;
+  --wk-sand-300: #e7e38a;
+  --wk-sand-100: #faf9e4;
+
+  /* ── Neutros ───────────────────────────────────────────────────────── */
+  --wk-gray-900: #222222;
+  --wk-gray-800: #3d3d3d;
+  --wk-gray-600: #666666;
+  --wk-gray-500: #999999;
+  --wk-gray-300: #d9d9d9;
+  --wk-gray-200: #e9ecef;
+  --wk-gray-100: #f8f9fa;
+
+  /* ── Estado ────────────────────────────────────────────────────────── */
+  --wk-success: #2ecc71;
+  --wk-success-bg: #eafaf1;
+  --wk-info: #3498db;
+  --wk-info-bg: #eaf4fc;
+  --wk-warning: #f39c12;
+  --wk-warning-bg: #fdf3e3;
+  --wk-danger: #e74c3c;
+  --wk-danger-bg: #fdeceb;
+
+  /* ── Alias semánticos: texto ───────────────────────────────────────── */
+  --wk-text-primary: var(--wk-gray-900);
+  --wk-text-secondary: var(--wk-gray-600);
+  --wk-text-caption: var(--wk-gray-500);
+  --wk-text-heading: var(--wk-blue-700);
+  --wk-text-accent: var(--wk-teal-700);
+  --wk-text-on-brand: var(--wk-white);
+  --wk-text-link: var(--wk-blue-700);
+  --wk-text-link-hover: var(--wk-teal-700);
+
+  /* ── Alias semánticos: superficie ──────────────────────────────────── */
+  --wk-surface-page: var(--wk-white);
+  --wk-surface-card: var(--wk-white);
+  --wk-surface-muted: var(--wk-gray-100);
+  --wk-surface-brand: var(--wk-blue-700);
+  --wk-surface-brand-soft: var(--wk-blue-050);
+  --wk-surface-accent-soft: var(--wk-teal-050);
+  --wk-surface-note: var(--wk-pink-100);
+
+  /* ── Alias semánticos: borde ───────────────────────────────────────── */
+  --wk-border-light: var(--wk-gray-200);
+  --wk-border-default: var(--wk-gray-300);
+  --wk-border-brand: var(--wk-blue-700);
+  --wk-border-accent: var(--wk-teal-600);
+
+  /* ── Gradientes ────────────────────────────────────────────────────── */
+  --wk-gradient-blue: linear-gradient(135deg, #3b6ca7 0%, #2d5a8a 100%);
+  --wk-gradient-blue-deep: linear-gradient(135deg, #3b6ca7 0%, #1f3f63 100%);
+  --wk-gradient-teal: linear-gradient(135deg, #00a8a8 0%, #008b8b 100%);
+  --wk-gradient-sand: linear-gradient(135deg, #e7e38a 0%, #d4d97f 100%);
+  /* Velo de protección para texto blanco sobre foto */
+  --wk-scrim-photo: linear-gradient(
+    180deg,
+    rgba(31, 63, 99, 0.12) 0%,
+    rgba(31, 63, 99, 0.55) 45%,
+    rgba(31, 63, 99, 0.9) 100%
+  );
+}
+
+:root {
+  --wk-font-display: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --wk-font-body: "Jost", "Century Gothic", "Questrial", "Helvetica Neue", Arial, sans-serif;
+
+  --wk-weight-regular: 400;
+  --wk-weight-medium: 500;
+  --wk-weight-bold: 700;
+  --wk-weight-black: 900;
+
+  /* ── Escala DOCUMENTO (cotizaciones, confirmaciones — PDF/Word) ─────
+     Los 8 niveles del brief. Son medidas de página impresa. */
+  --wk-doc-h1: 48px;
+  --wk-doc-h2: 36px;
+  --wk-doc-h3: 24px;
+  --wk-doc-h4: 14px;
+  --wk-doc-body: 12px;
+  --wk-doc-body-sm: 11px;
+  --wk-doc-caption: 10px;
+  --wk-doc-accent: 16px;
+
+  /* ── Escala PANTALLA (plataforma web, itinerario del viajero) ──────── */
+  --wk-size-display: 44px;
+  --wk-size-h1: 32px;
+  --wk-size-h2: 24px;
+  --wk-size-h3: 18px;
+  --wk-size-lead: 17px;
+  --wk-size-body: 15px;
+  --wk-size-sm: 13px;
+  --wk-size-xs: 11px;
+
+  /* ── Interlineado ──────────────────────────────────────────────────── */
+  --wk-leading-tight: 1.2;
+  --wk-leading-heading: 1.3;
+  --wk-leading-snug: 1.4;
+  --wk-leading-body: 1.55;
+  --wk-leading-loose: 1.7;
+
+  /* ── Tracking ──────────────────────────────────────────────────────── */
+  --wk-tracking-display: -0.02em;
+  --wk-tracking-normal: 0;
+  --wk-tracking-label: 0.08em;
+  --wk-tracking-eyebrow: 0.16em;
+}
+
+:root {
+  /* Retícula base de 8px (xs es el medio paso) */
+  --wk-space-xs: 4px;
+  --wk-space-sm: 8px;
+  --wk-space-md: 16px;
+  --wk-space-lg: 24px;
+  --wk-space-xl: 32px;
+  --wk-space-2xl: 48px;
+  --wk-space-3xl: 64px;
+
+  /* Radios */
+  --wk-radius-sm: 4px;
+  --wk-radius-md: 6px;
+  --wk-radius-lg: 8px;
+  --wk-radius-xl: 12px;
+  --wk-radius-2xl: 20px;
+  --wk-radius-pill: 999px;
+
+  /* Grosores de borde */
+  --wk-border-hair: 1px;
+  --wk-border-thick: 2px;
+  --wk-border-accent-bar: 4px;
+
+  /* Franja "Turquesa Trail": el diferenciador de marca */
+  --wk-trail-width: 4px;
+
+  /* Contenedores */
+  --wk-doc-page-width: 816px; /* Carta a 96dpi */
+  --wk-doc-margin: 32px;
+  --wk-content-max: 1180px;
+}
+
+:root {
+  /* Tres niveles de profundidad. Sustituyen la planaridad del diseño anterior. */
+  --wk-shadow-1: 0 2px 4px rgba(34, 34, 34, 0.08);
+  --wk-shadow-2: 0 4px 12px rgba(34, 34, 34, 0.12);
+  --wk-shadow-3: 0 8px 24px rgba(34, 34, 34, 0.15);
+
+  /* Variantes teñidas de azul marca: para tarjetas sobre fondo claro */
+  --wk-shadow-brand-1: 0 2px 4px rgba(59, 108, 167, 0.08);
+  --wk-shadow-brand-2: 0 4px 12px rgba(59, 108, 167, 0.1);
+  --wk-shadow-brand-3: 0 10px 28px rgba(59, 108, 167, 0.16);
+
+  /* Foto: sombra más contenida para no competir con la imagen */
+  --wk-shadow-photo: 0 2px 8px rgba(34, 34, 34, 0.12);
+
+  /* Anillo de foco accesible */
+  --wk-focus-ring: 0 0 0 3px rgba(0, 168, 168, 0.35);
+}
+
+:root {
+  --wk-duration-fast: 120ms;
+  --wk-duration-base: 200ms;
+  --wk-duration-slow: 320ms;
+  --wk-ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --wk-ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --wk-transition-base: all var(--wk-duration-base) var(--wk-ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --wk-duration-fast: 0ms;
+    --wk-duration-base: 0ms;
+    --wk-duration-slow: 0ms;
+  }
+}
+
