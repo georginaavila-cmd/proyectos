@@ -76,17 +76,20 @@ Objetivo: que nadie marque desde el celular, la casa o un computador que no es e
 | Rol | Puede |
 |---|---|
 | Dueña (Georgina) | Todo: usuarios, herramientas, configuración, reportes |
-| Gerencia | Publicar comunicados, ver asistencia de todos, aprobar correcciones |
-| Jefe de área | Ver la asistencia de su equipo, aprobar sus correcciones |
-| Colaborador | Marcar asistencia, leer comunicados, abrir sus herramientas |
+| Gerente | Malla, turnos y asistencia de las dos sedes; publicar comunicados; aprobar correcciones |
+| Directora de Operaciones Colombia | Malla, turnos y asistencia de la sede Bogotá; publicar comunicados; aprobar correcciones |
+| Directora de Operaciones RD | Malla, turnos y asistencia de la sede Santo Domingo; publicar comunicados; aprobar correcciones |
+| Colaborador | Marcar asistencia, ver la malla, leer comunicados, abrir sus herramientas |
 
 ## 2. Herramientas a enlazar
 
-| Herramienta | Qué hace | Dónde vive / enlace | Quién la usa | Cómo se entra |
-|---|---|---|---|---|
-| OMNIAXIS | **PENDIENTE** | **PENDIENTE** | **PENDIENTE** | **PENDIENTE** |
-| Wakanda Documentos | Cotizaciones, confirmaciones, vouchers e itinerarios en PDF | Plugin de Claude (este repositorio) | **PENDIENTE** | Cuenta de Claude |
-| KAM360 | **PENDIENTE** | **PENDIENTE** | **PENDIENTE** | **PENDIENTE** |
+| Herramienta | Qué hace | Dónde vive / enlace | Cómo se entra |
+|---|---|---|---|
+| OMNIAXIS | Herramienta de operaciones | AppSheet. **PENDIENTE:** enlace de la app | Cuenta de Google `@wakanda.travel` compartida, con la sesión abierta en Chrome |
+| Wakanda Documentos | Cotizaciones, confirmaciones, vouchers e itinerarios en PDF | https://claude.ai/artifact/1PK4MfNXHBSgoozg83oksE | Cuenta de Claude compartida; el equipo solo usa el gestor de documentos |
+| KAM 360 | Visitas, prospectos y solicitudes a Operaciones del equipo comercial | https://georginaavila-cmd.github.io/kam360/ | Abierto; cada KAM elige su nombre al entrar |
+
+Más adelante: que KAM 360 reciba de la intranet quién es la persona y se salte la pantalla "¿Quién está trabajando hoy?".
 
 ## 3. Control de asistencia
 
@@ -101,7 +104,7 @@ Marcaciones del día: **entrada · salida a almuerzo · regreso de almuerzo · s
 
 | Dato | Valor |
 |---|---|
-| Horario por sede (días, entrada, salida, tiempo de almuerzo) | **PENDIENTE** |
+| Horario por sede | Se cargan turnos de ejemplo. La primera tarea de cada directora es ajustarlos en la intranet (cada sede tiene sus propios turnos) |
 | ¿Hay personas en teletrabajo o en campo? | **PENDIENTE** |
 | ¿RD también marca asistencia? | **PENDIENTE** |
 
