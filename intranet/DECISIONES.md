@@ -51,11 +51,25 @@ georgina.avila · operaciones · contabilidad · comercialmin · emisiones · ma
 ### Forma de entrar (decidida con Georgina Ávila)
 
 - **Cuenta dueña:** `georgina.avila@wakanda.travel`. Es dueña de la infraestructura (Drive, bases de datos, servicios de la intranet). **No se comparte ni se usa para entrar** como colaborador.
-- **Cada persona entra con su propio correo corporativo** `@wakandatravel.com.co` (y `@wakandatravel.com.do` para RD). No depende de Google.
-- **Código por correo:** escribe su correo, le llega un código de 6 dígitos y entra. La sesión queda recordada en ese computador (90 días).
-- **App en el escritorio:** la intranet se instala como aplicación (ícono propio, ventana sin barra del navegador) y puede abrirse sola al encender el computador.
-- Solo entran correos de la **lista autorizada**.
-- Requisito técnico: para que los códigos lleguen sin caer en spam se envían desde `intranet@wakandatravel.com.co`, lo que exige agregar registros DNS (SPF y DKIM) en el hosting. **PENDIENTE:** quién administra el hosting y el DNS.
+- **Usuario y contraseña.** El usuario es el correo corporativo de cada persona (`@wakandatravel.com.co` o `.com.do`), solo como identificador; la intranet no envía correos para entrar.
+- La administradora crea cada cuenta con una contraseña temporal; la persona la cambia en su primer ingreso.
+- Si alguien olvida la contraseña, la administradora la restablece desde el panel.
+- La sesión queda recordada en el computador.
+- Se descartó el código por correo: exigía configurar el DNS del hosting.
+
+### Marcación solo desde la oficina
+
+Objetivo: que nadie marque desde el celular, la casa o un computador que no es el suyo.
+
+1. **IP de la oficina:** la marcación solo se acepta si llega desde la IP pública registrada de cada sede. Bloquea marcar desde casa o con datos móviles.
+2. **Computador autorizado:** la primera vez, cada computador queda registrado y la administradora lo aprueba; cada persona solo marca desde su computador asignado. Esto cubre el caso que la IP sola no cubre: un celular conectado al Wi-Fi de la oficina sale por la misma IP.
+3. Cada intento rechazado queda registrado (quién, desde dónde, a qué hora).
+4. Ver intranet, comunicados y herramientas sí se permite desde cualquier lugar; la restricción aplica **solo a marcar asistencia**. **PENDIENTE** confirmar.
+
+| Dato | Valor |
+|---|---|
+| ¿La oficina de Bogotá tiene IP fija? | **PENDIENTE** (si es dinámica, la administradora la actualiza desde el panel con un botón estando en la oficina) |
+| IP de la sede RD | **PENDIENTE** |
 
 ### Roles
 
@@ -89,7 +103,6 @@ Marcaciones del día: **entrada · salida a almuerzo · regreso de almuerzo · s
 |---|---|
 | Horario por sede (días, entrada, salida, tiempo de almuerzo) | **PENDIENTE** |
 | ¿Hay personas en teletrabajo o en campo? | **PENDIENTE** |
-| ¿Marcar solo desde la red de la oficina? | **PENDIENTE** |
 | ¿RD también marca asistencia? | **PENDIENTE** |
 
 ## 4. Comunicación interna
