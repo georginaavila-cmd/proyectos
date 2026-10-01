@@ -105,6 +105,17 @@ Marcaciones del día: **entrada · salida a almuerzo · regreso de almuerzo · s
 | ¿Hay personas en teletrabajo o en campo? | **PENDIENTE** |
 | ¿RD también marca asistencia? | **PENDIENTE** |
 
+### Malla de horarios
+
+- Cada líder publica la malla semanal de su equipo (turno por persona y por día). La malla es **pública**: todo el equipo la ve; solo el líder de cada área y gerencia la editan.
+- Turnos definidos una vez (por ejemplo: Mañana, Tarde, Sábado, Descanso, Vacaciones), cada uno con hora de entrada, almuerzo y salida.
+- La asistencia se mide contra la malla vigente ese día. Si el líder cambia un turno, los reportes se recalculan solos.
+- Cada cambio queda en un historial: quién lo hizo, cuándo, valor anterior y nuevo.
+
+### Orden de construcción
+
+La validación por IP y computador autorizado **se deja para el final**. Todo se construye y se prueba sin ella; antes de salir en vivo se registra la IP de cada sede, se activa y se prueba desde la oficina.
+
 ## 4. Comunicación interna
 
 - Gerencia publica comunicados para todos, por área, por sede o para personas concretas.
