@@ -45,14 +45,14 @@ button { cursor: pointer; }
 .brand img { width: 76px; height: 76px; object-fit: contain; }
 .brand span { font-family: var(--f-display); font-weight: 900; font-size: 22px; color: var(--navy); white-space: nowrap; }
 .tabs { display: flex; gap: 4px; flex: 1; overflow-x: auto; padding-block: 4px; }
-.tabs button { border: 0; background: none; padding: 8px 14px; border-radius: 999px; color: var(--ink-2); font-weight: 500; white-space: nowrap; font-size: 15px; }
+.tabs button { border: 0; background: none; padding: 8px 12px; border-radius: 999px; color: var(--ink-2); font-weight: 500; white-space: nowrap; font-size: 15px; }
 .tabs button:hover { color: var(--navy); }
 .tabs button[aria-current="page"] { background: var(--blue-100); color: var(--blue); font-weight: 600; }
 .tag { font-family: var(--f-display); font-size: 11px; letter-spacing: .2em; font-weight: 700; color: var(--ink-2); text-transform: uppercase; }
 .me { display: flex; align-items: center; gap: 10px; font-size: 13px; }
 .avatar { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; background: var(--blue); color: #fff; font-family: var(--f-display); font-weight: 900; font-size: 13px; flex: none; }
 .avatar.soft { background: var(--teal-050); color: var(--navy); }
-.me-txt { line-height: 1.25; text-align: right; }
+.me-txt { line-height: 1.25; text-align: right; display: none; }
 .me-txt b { color: var(--navy); }
 .me-txt span { color: var(--ink-3); font-size: 12px; }
 
@@ -168,6 +168,83 @@ select.shift:hover { box-shadow: inset 0 0 0 2px var(--blue-200); }
 .turnos input:focus { border-color: var(--teal); outline: none; box-shadow: 0 0 0 3px rgba(0,168,168,.2); }
 .turnos .tname { width: 140px; font-weight: 600; color: var(--navy); }
 
+/* Buscador */
+.search { position: relative; flex: 0 1 230px; min-width: 170px; }
+.search input { width: 100%; padding: 9px 12px 9px 36px; border: 1px solid var(--line); border-radius: 999px; background: var(--blue-050); font-size: 14px; }
+.search input:focus { outline: none; border-color: var(--teal); background: #fff; box-shadow: 0 0 0 3px rgba(0,168,168,.2); }
+.search > .ico { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--ink-3); pointer-events: none; }
+.qres { position: absolute; top: calc(100% + 6px); right: 0; width: min(420px, calc(100vw - 32px)); background: #fff; border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 10px 28px rgba(59,108,167,.16); padding: 8px; z-index: 30; max-height: 70vh; overflow-y: auto; }
+.qres h4 { margin: 8px 8px 4px; font-family: var(--f-display); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); }
+.qres .r { display: flex; gap: 10px; align-items: center; width: 100%; text-align: left; border: 0; background: none; padding: 8px; border-radius: 8px; text-decoration: none; color: var(--ink); }
+.qres .r:hover, .qres .r:focus-visible { background: var(--blue-050); }
+.qres .r b { color: var(--navy); font-weight: 600; display: block; font-size: 14px; }
+.qres .r small { color: var(--ink-3); font-size: 12px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.qres .r > span:last-child { min-width: 0; }
+.qres .sq { width: 34px; height: 34px; }
+.qres .sq .ico { width: 16px; height: 16px; }
+.qres .empty { padding: 14px 8px; color: var(--ink-3); font-size: 14px; }
+mark { background: var(--sand); color: inherit; border-radius: 3px; padding: 0 1px; }
+.hl { box-shadow: 0 0 0 3px var(--teal) !important; }
+tr.hl td { background: var(--teal-050); }
+
+/* Imágenes de comunicados */
+.thumbs { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+.thumb { border: 1px solid var(--line); padding: 0; border-radius: 8px; overflow: hidden; background: var(--blue-050); width: 120px; height: 84px; position: relative; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb:hover { border-color: var(--teal); }
+.thumb.sm { width: 64px; height: 46px; }
+.thumb .x { position: absolute; top: 4px; right: 4px; width: 22px; height: 22px; border-radius: 50%; background: rgba(31,63,99,.8); color: #fff; display: grid; place-items: center; font-size: 13px; line-height: 1; }
+.imgcount { display: inline-flex; gap: 4px; align-items: center; font-size: 12px; color: var(--ink-2); }
+.imgcount .ico { width: 14px; height: 14px; }
+.drop { border: 1px dashed var(--blue-200); border-radius: 8px; padding: 14px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; background: var(--blue-050); font-size: 14px; color: var(--ink-2); }
+.drop label.btn { cursor: pointer; }
+.drop input[type=file] { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.lightbox { position: fixed; inset: 0; background: rgba(15,30,48,.82); z-index: 60; display: grid; grid-template-rows: auto 1fr auto; padding: calc(16px + env(safe-area-inset-top, 0px)) 16px calc(16px + env(safe-area-inset-bottom, 0px)); gap: 12px; }
+.lightbox .lb-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #fff; max-width: 1100px; width: 100%; margin: 0 auto; }
+.lightbox .lb-top b { font-family: var(--f-display); font-size: 16px; }
+.lightbox .lb-img { display: grid; place-items: center; min-height: 0; }
+.lightbox .lb-img img { max-width: min(1100px, 100%); max-height: 100%; border-radius: 8px; box-shadow: 0 12px 40px rgba(0,0,0,.4); background: #fff; }
+.lightbox .lb-nav { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
+.lightbox .btn.ghost { background: rgba(255,255,255,.95); }
+
+/* Informes */
+.filters { display: flex; gap: 10px; flex-wrap: wrap; align-items: end; margin-bottom: 22px; }
+.filters .field { gap: 4px; }
+.filters .field label { font-size: 12px; color: var(--ink-3); font-family: var(--f-display); letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
+.filters select { padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; min-width: 150px; }
+.kpis.six { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+.kpis.six .kpi b, .kpis.six .kpi span { display: block; }
+.kpis.six .kpi b { margin-bottom: 2px; }
+.kpi small { display: block; font-size: 12px; color: var(--ink-3); }
+.grid-rep { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-bottom: 28px; }
+.chartbox { padding: 18px 18px 10px; position: relative; }
+.chartbox h3, .rankbox h3 { font-size: 17px; }
+.chartbox .sub, .rankbox .sub { font-size: 13px; color: var(--ink-3); margin: 2px 0 10px; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart .grid line { stroke: var(--line); stroke-width: 1; }
+.chart text { font-family: var(--f-body); font-size: 11px; fill: var(--ink-3); }
+.chart .bar { fill: var(--blue); }
+.chart .hit { fill: transparent; cursor: pointer; }
+.chart .hit:hover + .bar, .chart g.on .bar { fill: var(--navy); }
+.tip { position: absolute; pointer-events: none; background: #fff; border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 8px 20px rgba(59,108,167,.16); padding: 8px 10px; font-size: 13px; color: var(--ink); max-width: 240px; z-index: 5; }
+.tip b { color: var(--navy); font-family: var(--f-display); }
+.rankbox { padding: 18px; }
+.rank { display: grid; gap: 4px; }
+.rank button { display: grid; grid-template-columns: 22px minmax(0, 130px) minmax(0, 1fr) auto; gap: 10px; align-items: center; border: 0; background: none; padding: 7px 6px; border-radius: 8px; text-align: left; font-size: 14px; }
+.rank button:hover, .rank button.sel { background: var(--blue-050); }
+.rank .pos { font-family: var(--f-display); font-weight: 900; color: var(--ink-3); font-size: 13px; text-align: center; }
+.rank .nm { color: var(--navy); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank .track { height: 10px; background: var(--blue-050); border-radius: 0 4px 4px 0; overflow: hidden; }
+.rank .fill { height: 100%; background: var(--blue); border-radius: 0 4px 4px 0; }
+.rank .val { font-size: 13px; color: var(--ink-2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.detail { padding: 18px 20px; margin-top: 14px; display: grid; gap: 10px; }
+.detail .days { display: flex; flex-wrap: wrap; gap: 6px; }
+th.sortable { cursor: pointer; }
+td.n { text-align: right; font-variant-numeric: tabular-nums; }
+th.n { text-align: right; }
+tr.clickable { cursor: pointer; }
+tr.clickable:hover td { background: var(--blue-050); }
+
 /* Reporte */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
 .kpi { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -210,6 +287,8 @@ select.shift:hover { box-shadow: inset 0 0 0 2px var(--blue-200); }
 .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--navy); color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 14px; box-shadow: 0 8px 24px rgba(31,63,99,.25); z-index: 50; max-width: calc(100% - 32px); border-left: 4px solid var(--teal); }
 
 @media (max-width: 960px) {
+  .grid-rep { grid-template-columns: minmax(0, 1fr); }
+  .search { flex-basis: 100%; order: 4; }
   .grid-home { grid-template-columns: minmax(0, 1fr); }
   .login { grid-template-columns: 1fr; }
   .login-side { border-left: 0; border-top: 3px solid var(--teal); }
@@ -231,6 +310,7 @@ select.shift:hover { box-shadow: inset 0 0 0 2px var(--blue-200); }
   .brand img { width: 52px; height: 52px; }
   .top .wrap { gap: 8px 12px; padding-block: 8px; }
   .tabs { order: 3; flex-basis: 100%; }
+  .rank button { grid-template-columns: 20px minmax(0, 100px) minmax(0, 1fr) auto; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
@@ -255,6 +335,12 @@ const IC = {
   alert: '<circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
   x: '<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
   moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+  clock: '<path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  image: '<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
+  user: '<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>',
+  chart: '<path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/>',
+  drive: '<path d="M12 2 2 19h20Z"/><path d="M7.5 12h9"/>',
   pin: '<path d="M12 17v5"/><path d="M9 10.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24V16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V7a1 1 0 0 1 1-1 2 2 0 0 0 0-4H8a2 2 0 0 0 0 4 1 1 0 0 1 1 1z"/>'
 };
 const ico = k => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${IC[k]}</svg>`;
@@ -289,7 +375,7 @@ const ROLES = {
   gerencia: { persona: 8, rol: 'Gerente', puedeEditar: () => true }
 };
 const S = {
-  logged: false, horaSim: null, role: 'colaborador', view: 'inicio', filtroArea: 'Todas', filtroSede: 'Todas',
+  logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', role: 'colaborador', view: 'inicio', filtroArea: 'Todas', filtroSede: 'Todas',
   malla: {
     1: ['M', 'M', 'T', 'M', 'M', 'D'], 2: ['M', 'M', 'M', 'M', 'M', 'S'], 3: ['T', 'T', 'M', 'M', 'T', 'D'],
     4: ['M', 'T', 'M', 'T', 'M', 'S'], 5: ['M', 'M', 'M', 'M', 'M', 'D'], 6: ['T', 'M', 'T', 'M', 'T', 'S'],
@@ -314,13 +400,13 @@ const S = {
   comunicados: [
     { id: 1, de: 'Carolina Peña', cargo: 'Gerente', fecha: 'Hoy, 8:05', para: 'Todo el equipo', pin: true, req: true,
       titulo: 'Nueva política de tarifas con proveedores en Cancún',
-      cuerpo: 'Desde el lunes las cotizaciones de Riviera Maya usan el tarifario actualizado. Revisen la carpeta de tarifas antes de enviar propuestas.', leidos: [2, 5, 8, 9, 6, 3] },
+      cuerpo: 'Desde el lunes las cotizaciones de Riviera Maya usan el tarifario actualizado. Revisen la carpeta de tarifas antes de enviar propuestas.', leidos: [2, 5, 8, 9, 6, 3], imgs: 'TARIFA' },
     { id: 2, de: 'Natalia Suárez', cargo: 'Directora de Operaciones Colombia', fecha: 'Ayer, 16:40', para: 'Sede Bogotá', req: false,
       titulo: 'Turnos de sábado en octubre',
       cuerpo: 'La malla de octubre ya está publicada. Si necesitan cambiar un sábado, pídanlo por aquí antes del jueves.', leidos: [4, 1, 5] },
     { id: 3, de: 'Carolina Peña', cargo: 'Gerente', fecha: 'Lun, 10:00', para: 'Todo el equipo', req: true,
       titulo: 'Famtrip a Punta Cana: inscripciones abiertas',
-      cuerpo: 'Hay 4 cupos para el viaje de familiarización del 14 al 17 de noviembre. Prioridad para el equipo comercial.', leidos: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11] }
+      cuerpo: 'Hay 4 cupos para el viaje de familiarización del 14 al 17 de noviembre. Prioridad para el equipo comercial.', leidos: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11], imgs: 'FAM' }
   ]
 };
 
@@ -423,18 +509,19 @@ function loginView() {
 function appShell() {
   const p = me(), r = ROLES[S.role];
   const tabs = [['inicio', 'Inicio'], ['malla', 'Malla de horarios'], ['comunicados', 'Comunicados']];
-  if (S.role !== 'colaborador') tabs.push(['asistencia', 'Asistencia']);
+  if (S.role !== 'colaborador') tabs.push(['asistencia', 'Asistencia'], ['informes', 'Informes']);
   if (!tabs.find(t => t[0] === S.view)) S.view = 'inicio';
-  const views = { inicio: inicioView, malla: mallaView, comunicados: comunicadosView, asistencia: asistenciaView };
+  const views = { inicio: inicioView, malla: mallaView, comunicados: comunicadosView, asistencia: asistenciaView, informes: informesView };
   return `<header class="top"><div class="wrap">
       <div class="brand"><img src="${LOGO}" alt=""><span>Wakanda Travel</span></div>
       <nav class="tabs" aria-label="Secciones">${tabs.map(([k, l]) =>
         `<button type="button" data-view="${k}" ${S.view === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
-      <span class="tag">Intranet</span>
-      <div class="me"><div class="me-txt"><b>${p.nombre}</b><br><span>${r.rol} · ${p.sede}</span></div><div class="avatar">${initials(p.nombre)}</div></div>
+      <div class="search" role="search">${ico('search')}<input id="q" type="search" placeholder="Buscar comunicados, personas, herramientas" aria-label="Buscar en la intranet" autocomplete="off" value="${esc(S.q)}"><div class="qres" id="qres" hidden></div></div>
+      <div class="me"><div class="me-txt"><b>${p.nombre}</b><br><span>${r.rol} · ${p.sede}</span></div><div class="avatar" title="${p.nombre} · ${r.rol} · ${p.sede}">${initials(p.nombre)}</div></div>
     </div></header>
     <main class="wrap">${views[S.view]()}</main>
-    <footer class="foot-site"><div class="wrap"><span><b>Wakanda Travel</b> — Diseñadores de viajes, diseñadores de sueños</span><span>Intranet · RNT 101438</span></div></footer>`;
+    <footer class="foot-site"><div class="wrap"><span><b>Wakanda Travel</b> — Diseñadores de viajes, diseñadores de sueños</span><span>Intranet · RNT 101438</span></div></footer>
+    ${lightboxView()}`;
 }
 
 const fechaLarga = () => new Date().toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
@@ -491,12 +578,13 @@ function passView() {
     </div></section>`;
 }
 
-function toolsView() {
-  const tools = [
+const TOOLS = [
     { n: 'OMNIAXIS', d: 'Herramienta de operaciones en AppSheet. Se abre con la cuenta de Google de operaciones.', i: 'compass', f: 'Operaciones · AppSheet', url: 'https://www.appsheet.com/start/66a528eb-aa3d-4979-ab72-52c53f755fd8?platform=desktop' },
     { n: 'Wakanda Documentos', d: 'Cotizaciones, confirmaciones, vouchers e itinerarios con el diseño de Wakanda.', i: 'file', f: 'Documentos de viaje', url: 'https://claude.ai/artifact/1PK4MfNXHBSgoozg83oksE' },
     { n: 'KAM 360', d: 'Visitas, prospectos y solicitudes a Operaciones del equipo comercial.', i: 'target', f: 'Equipo comercial', url: 'https://georginaavila-cmd.github.io/kam360/' }
-  ];
+];
+function toolsView() {
+  const tools = TOOLS;
   const inner = t => `<span class="sq">${ico(t.i)}</span><h3>${t.n}</h3><p>${t.d}</p><span class="foot"><span>${t.f}</span>${ico('chev')}</span>`;
   return `<div class="tools">${tools.map(t => t.url
       ? `<a class="tool" href="${t.url}" target="_blank" rel="noopener">${inner(t)}</a>`
@@ -514,15 +602,26 @@ function noteView(c, compact) {
     foot = `<div class="note-foot">${leido ? `<span class="chip ok">${ico('check')} Leído</span>`
       : `<span class="chip warn">Requiere confirmación</span><button type="button" class="btn sm teal" data-leer="${c.id}">Confirmar lectura</button>`}</div>`;
   }
-  return `<article class="card note ${c.pin ? 'pin' : ''}">
-    <div class="note-meta">${c.pin ? `<span class="chip info">${ico('pin')} Fijado</span>` : ''}<span>${c.de} · ${c.cargo}</span><span>·</span><span>${c.fecha}</span></div>
-    <h3>${c.titulo}</h3>${compact ? '' : `<p>${c.cuerpo}</p><div class="hint">Para: ${c.para}</div>`}${foot}</article>`;
+  const imgs = c.imgs || [];
+  const gal = !imgs.length ? '' : compact
+    ? `<div class="thumbs">${imgs.slice(0, 3).map((im, i) => `<button type="button" class="thumb sm" data-lb="${c.id}:${i}" aria-label="Ver imagen ${im.nombre}"><img src="${im.src}" alt=""></button>`).join('')}</div>`
+    : `<div class="thumbs">${imgs.map((im, i) => `<button type="button" class="thumb" data-lb="${c.id}:${i}" aria-label="Ver imagen ${im.nombre}"><img src="${im.src}" alt=""></button>`).join('')}</div>`;
+  return `<article class="card note ${c.pin ? 'pin' : ''} ${S.hl === c.id ? 'hl' : ''}" id="com-${c.id}">
+    <div class="note-meta">${c.pin ? `<span class="chip info">${ico('pin')} Fijado</span>` : ''}<span>${c.de} · ${c.cargo}</span><span>·</span><span>${c.fecha}</span>${imgs.length ? `<span>·</span><span class="imgcount">${ico('image')} ${imgs.length}</span>` : ''}</div>
+    <h3>${mk(c.titulo, compact ? '' : S.qc)}</h3>${compact ? '' : `<p>${mk(c.cuerpo, S.qc)}</p><div class="hint">Para: ${c.para}</div>`}${gal}${foot}</article>`;
 }
 
+function newsList() {
+  const list = S.comunicados.filter(c => !S.qc || match(`${c.titulo} ${c.cuerpo} ${c.de} ${c.para}`, S.qc));
+  return list.length ? list.map(c => noteView(c, false)).join('')
+    : `<div class="card" style="padding:18px 20px;color:var(--ink-2)">No hay comunicados que digan "${esc(S.qc)}". Prueba con otra palabra.</div>`;
+}
 function newsSection(compact) {
-  const list = compact ? S.comunicados.slice(0, 3) : S.comunicados;
-  return `<section><div class="sec-h"><h2>Comunicados</h2>${compact ? `<button type="button" class="link" data-view="comunicados">Ver todos</button>` : ''}</div>
-    <div class="news">${list.map(c => noteView(c, compact)).join('')}</div></section>`;
+  if (compact) return `<section><div class="sec-h"><h2>Comunicados</h2><button type="button" class="link" data-view="comunicados">Ver todos</button></div>
+    <div class="news">${S.comunicados.slice(0, 3).map(c => noteView(c, true)).join('')}</div></section>`;
+  return `<section><div class="sec-h"><h2>Comunicados</h2></div>
+    <div class="search" style="max-width:none;margin-bottom:14px">${ico('search')}<input id="qc" type="search" placeholder="Buscar en comunicados" aria-label="Buscar en comunicados" value="${esc(S.qc)}" autocomplete="off"></div>
+    <div class="news" id="newsList">${newsList()}</div></section>`;
 }
 
 function weekSection() {
@@ -549,7 +648,7 @@ function mallaView() {
     : 'Puedes cambiar los turnos de las dos sedes. Cada cambio recalcula la asistencia al instante.';
   const rows = filtrados().map(p => {
     const ed = r.puedeEditar(p);
-    return `<tr><td>${personCell(p)}</td>${DIAS.map((d, i) => { const t = S.malla[p.id][i];
+    return `<tr class="${S.hlPer === p.id ? 'hl' : ''}" id="per-${p.id}"><td>${personCell(p)}</td>${DIAS.map((d, i) => { const t = S.malla[p.id][i];
       return `<td class="${i === hoy ? 'today' : ''}">${ed
         ? `<select class="shift t-${t}" data-p="${p.id}" data-d="${i}" aria-label="Turno de ${p.nombre} el ${d}">${Object.keys(TURNOS).map(k => `<option value="${k}" ${k === t ? 'selected' : ''}>${TURNOS[k].nombre}</option>`).join('')}</select>`
         : `<span class="shift t-${t}">${TURNOS[t].nombre}</span>`}</td>`; }).join('')}</tr>`;
@@ -588,6 +687,10 @@ function comunicadosView() {
         <div class="field" style="align-content:end;gap:10px">
           <label class="check"><input type="checkbox" id="cReq" checked> Pedir confirmación de lectura</label>
           <label class="check"><input type="checkbox" id="cPin"> Fijar en el inicio</label></div></div>
+      <div class="field"><span style="font-size:14px;font-weight:600;color:var(--navy)">Imágenes</span>
+        <div class="drop"><label class="btn ghost sm" for="cImg">${ico('image')} Agregar imágenes</label><input id="cImg" type="file" accept="image/*" multiple>
+          <span>Se guardan en la carpeta <b>Intranet / Comunicados</b> del Drive de Wakanda.</span></div>
+        <div class="thumbs" id="draftThumbs">${draftThumbs()}</div></div>
       <div><button class="btn" type="submit">${ico('mega')} Publicar</button></div>
     </form></section>`
     : `<section><div class="sec-h"><h2>¿Cómo funciona?</h2></div><div class="card" style="padding:18px 20px;color:var(--ink-2)">Cuando un comunicado pide confirmación, toca <b>Confirmar lectura</b>. Gerencia ve quién ya lo leyó.</div></section>`;
@@ -622,6 +725,188 @@ function asistenciaView() {
     <div class="card tablewrap"><table><thead><tr><th>Persona</th><th>Turno</th><th>Entrada</th><th>Sale a almorzar</th><th>Regresa</th><th>Salida</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 
+/* ── Búsqueda ── */
+const norm = t => String(t).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+const esc = t => String(t ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const match = (txt, q) => norm(txt).includes(norm(q.trim()));
+function mk(txt, q) {
+  if (!q || !q.trim()) return esc(txt);
+  const n = norm(txt), k = norm(q.trim()), i = n.indexOf(k);
+  if (i < 0) return esc(txt);
+  return esc(txt.slice(0, i)) + '<mark>' + esc(txt.slice(i, i + k.length)) + '</mark>' + esc(txt.slice(i + k.length));
+}
+function resultados(q) {
+  if (!q.trim()) return '';
+  const com = S.comunicados.filter(c => match(`${c.titulo} ${c.cuerpo} ${c.de} ${c.para}`, q)).slice(0, 5);
+  const per = PEOPLE.filter(p => match(`${p.nombre} ${p.area} ${p.sede}`, q)).slice(0, 5);
+  const her = TOOLS.filter(t => match(`${t.n} ${t.d}`, q));
+  if (!com.length && !per.length && !her.length) return `<div class="empty">Nada coincide con "${esc(q)}".</div>`;
+  let h = '';
+  if (com.length) h += '<h4>Comunicados</h4>' + com.map(c => `<button type="button" class="r" data-goto="com:${c.id}"><span class="sq">${ico('mega')}</span><span><b>${mk(c.titulo, q)}</b><small>${esc(c.de)} · ${esc(c.fecha)}</small></span></button>`).join('');
+  if (per.length) h += '<h4>Personas</h4>' + per.map(p => `<button type="button" class="r" data-goto="per:${p.id}"><span class="avatar soft" style="width:34px;height:34px;font-size:11px">${initials(p.nombre)}</span><span><b>${mk(p.nombre, q)}</b><small>${esc(p.area)} · ${esc(p.sede)} · ver en la malla</small></span></button>`).join('');
+  if (her.length) h += '<h4>Herramientas</h4>' + her.map(t => `<a class="r" href="${t.url}" target="_blank" rel="noopener"><span class="sq">${ico(t.i)}</span><span><b>${mk(t.n, q)}</b><small>${esc(t.f)}</small></span></a>`).join('');
+  return h;
+}
+
+/* ── Imágenes ── */
+function poster(titulo, sub, c1, c2, sello) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${c1}"/><stop offset="1" stop-color="${c2}"/></linearGradient></defs>
+    <rect width="1200" height="800" fill="url(#g)"/><circle cx="960" cy="210" r="120" fill="#e7e38a" opacity=".9"/>
+    <path d="M0 610 Q300 540 600 610 T1200 600 V800 H0Z" fill="#ffffff" opacity=".18"/><path d="M0 680 Q300 620 600 680 T1200 670 V800 H0Z" fill="#ffffff" opacity=".25"/>
+    <rect x="0" y="0" width="16" height="800" fill="#00a8a8"/>
+    <text x="90" y="300" font-family="Lato, Arial" font-weight="900" font-size="96" fill="#ffffff">${titulo}</text>
+    <text x="94" y="380" font-family="Jost, Arial" font-size="44" fill="#ffffff" opacity=".92">${sub}</text>
+    <text x="94" y="720" font-family="Lato, Arial" font-weight="700" font-size="30" letter-spacing="6" fill="#ffffff">${sello}</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function tablaImg() {
+  const filas = [['Hotel', 'Plan', 'Desde'], ['Riu Palace Riviera Maya', 'Todo incluido', 'USD 189'], ['Iberostar Paraíso', 'Todo incluido', 'USD 172'], ['Barceló Maya Grand', 'Todo incluido', 'USD 158'], ['Hotel Xcaret México', 'Todo incluido', 'USD 410']];
+  const rows = filas.map((f, i) => `<g transform="translate(60 ${190 + i * 92})"><rect width="1080" height="80" rx="8" fill="${i === 0 ? '#3b6ca7' : i % 2 ? '#f4f7fb' : '#ffffff'}"/>
+    ${f.map((c, j) => `<text x="${[24, 560, 1056][j]}" y="50" text-anchor="${j === 2 ? 'end' : 'start'}" font-family="${i === 0 ? 'Lato' : 'Jost'}, Arial" font-weight="${i === 0 ? 900 : 500}" font-size="30" fill="${i === 0 ? '#ffffff' : '#1f3f63'}">${c}</text>`).join('')}</g>`).join('');
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720"><rect width="1200" height="720" fill="#ffffff"/><rect width="1200" height="10" fill="#00a8a8"/>
+    <text x="60" y="110" font-family="Lato, Arial" font-weight="900" font-size="52" fill="#1f3f63">Tarifario Riviera Maya <tspan fill="#008b8b">2026</tspan></text>
+    <text x="60" y="155" font-family="Jost, Arial" font-size="26" fill="#555f6d">Por persona por noche, en acomodación doble. Ejemplo para el prototipo.</text>${rows}</svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function draftThumbs() {
+  return S.draft.map((im, i) => `<span class="thumb sm"><img src="${im.src}" alt="${esc(im.nombre)}"><button type="button" class="x" data-quitar="${i}" aria-label="Quitar ${esc(im.nombre)}">×</button></span>`).join('');
+}
+function lightboxView() {
+  if (!S.lb) return '';
+  const c = S.comunicados.find(x => x.id === S.lb.cid); if (!c) return '';
+  const im = c.imgs[S.lb.i], n = c.imgs.length;
+  return `<div class="lightbox" role="dialog" aria-modal="true" aria-label="Imagen del comunicado">
+    <div class="lb-top"><div><b>${esc(c.titulo)}</b><div style="font-size:13px;opacity:.8">${esc(im.nombre)} · ${S.lb.i + 1} de ${n}</div></div>
+      <button type="button" class="btn ghost sm" data-lbclose="1">Cerrar</button></div>
+    <div class="lb-img"><img src="${im.src}" alt="${esc(im.nombre)}"></div>
+    <div class="lb-nav">${n > 1 ? `<button type="button" class="btn ghost sm" data-lbmove="-1">Anterior</button><button type="button" class="btn ghost sm" data-lbmove="1">Siguiente</button>` : ''}
+      <button type="button" class="btn ghost sm" data-tool="drive">${ico('drive')} Abrir en Drive</button></div></div>`;
+}
+
+/* ── Informes mensuales (datos simulados con semilla fija) ── */
+const MESES = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+const PROP = { 1: .10, 2: .04, 3: .32, 4: .06, 5: .03, 6: .21, 7: .09, 8: .03, 9: .14, 10: .05, 11: .26 };
+function rng(seed) { let t = seed >>> 0; return () => { t += 0x6D2B79F5; let r = Math.imul(t ^ t >>> 15, 1 | t); r ^= r + Math.imul(r ^ r >>> 7, 61 | r); return ((r ^ r >>> 14) >>> 0) / 4294967296; }; }
+function mesesDisponibles() {
+  const d = new Date(), out = [];
+  for (let i = 0; i < 6; i++) { const m = new Date(d.getFullYear(), d.getMonth() - i, 1); out.push(`${m.getFullYear()}-${m.getMonth()}`); }
+  return out;
+}
+function registrosMes(y, m) {
+  const hoy = new Date(); hoy.setHours(0, 0, 0, 0);
+  const ult = new Date(y, m + 1, 0).getDate(), regs = [], dias = [];
+  for (let d = 1; d <= ult; d++) {
+    const f = new Date(y, m, d); if (f >= hoy) break;
+    const dow = f.getDay(); if (dow === 0) continue;
+    dias.push(d);
+    for (const p of PEOPLE) {
+      const t = S.malla[p.id][dow - 1], tu = TURNOS[t]; if (!tu.ini) continue;
+      const r = rng(y * 10000 + m * 400 + d * 13 + p.id * 7919);
+      const aus = r() < .015, tarde = r() < PROP[p.id];
+      const entOff = tarde ? 6 + Math.floor(r() * r() * 48) : -12 + Math.floor(r() * 16);
+      let alm = null;
+      if (tu.almIni) { const perm = toMin(tu.almFin) - toMin(tu.almIni); alm = { perm, dur: perm + (r() < .08 ? 8 + Math.floor(r() * 25) : -5 + Math.floor(r() * 9)) }; }
+      const q = r(), salOff = q < .05 ? -(5 + Math.floor(r() * 30)) : q < .17 ? 31 + Math.floor(r() * 90) : Math.floor(r() * 20);
+      regs.push({ pid: p.id, d, aus, entOff, alm, salOff });
+    }
+  }
+  return { regs, dias };
+}
+function informe() {
+  const [y, m] = S.mes.split('-').map(Number), r = ROLES[S.role];
+  const sede = r.sede || S.repSede;
+  const gente = PEOPLE.filter(p => (sede === 'Todas' || p.sede === sede) && (S.repArea === 'Todas' || p.area === S.repArea));
+  const ids = new Set(gente.map(p => p.id));
+  const { regs, dias } = registrosMes(y, m);
+  const st = Object.fromEntries(gente.map(p => [p.id, { p, prog: 0, dias: 0, tardes: 0, minT: 0, almL: 0, temp: 0, extra: 0, aus: 0, detalle: [] }]));
+  const porDia = Object.fromEntries(dias.map(d => [d, []]));
+  for (const g of regs) {
+    if (!ids.has(g.pid)) continue;
+    const s = st[g.pid]; s.prog++;
+    if (g.aus) { s.aus++; s.detalle.push({ d: g.d, txt: 'Sin marcar', cls: 'bad' }); continue; }
+    s.dias++;
+    if (g.entOff > 5) { s.tardes++; s.minT += g.entOff; porDia[g.d].push({ n: s.p.nombre, min: g.entOff }); s.detalle.push({ d: g.d, txt: `Tarde ${g.entOff} min`, cls: 'warn' }); }
+    if (g.alm && g.alm.dur > g.alm.perm + 5) { s.almL++; s.detalle.push({ d: g.d, txt: `Almuerzo ${g.alm.dur} min`, cls: 'warn' }); }
+    if (g.salOff < 0) { s.temp++; s.detalle.push({ d: g.d, txt: `Salió ${-g.salOff} min antes`, cls: 'warn' }); }
+    if (g.salOff > 30) s.extra += g.salOff;
+  }
+  const lista = Object.values(st);
+  const tot = k => lista.reduce((a, s) => a + s[k], 0);
+  return { y, m, dias, lista, porDia, tot, sede };
+}
+function chartDias(info) {
+  const W = 720, H = 220, L = 30, R = 8, T = 12, B = 26, iw = W - L - R, ih = H - T - B;
+  const ds = info.dias, n = ds.length || 1, bw = iw / n;
+  const vals = ds.map(d => info.porDia[d].length), max = Math.max(4, ...vals);
+  const paso = max <= 6 ? 1 : max <= 12 ? 2 : 5, top = Math.ceil(max / paso) * paso;
+  const y = v => T + ih - (v / top) * ih;
+  let g = '<g class="grid">';
+  for (let v = 0; v <= top; v += paso) g += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L - 8}" y="${y(v) + 4}" text-anchor="end">${v}</text>`;
+  g += '</g>';
+  const bars = ds.map((d, i) => {
+    const v = vals[i], x = L + i * bw, w = Math.max(2, bw - 2), h = ih * v / top, yy = T + ih - h;
+    const path = v ? `M${x + 1},${T + ih} V${yy + Math.min(4, h)} Q${x + 1},${yy} ${x + 1 + Math.min(4, w / 2)},${yy} H${x + 1 + w - Math.min(4, w / 2)} Q${x + 1 + w},${yy} ${x + 1 + w},${yy + Math.min(4, h)} V${T + ih} Z` : '';
+    const f = new Date(info.y, info.m, d), lbl = f.getDay() === 1 || i === 0;
+    return `<g data-dia="${d}"><rect class="hit" x="${x}" y="${T}" width="${bw}" height="${ih}"/>${v ? `<path class="bar" d="${path}"/>` : ''}${lbl ? `<text x="${x + bw / 2}" y="${H - 8}" text-anchor="middle">${d}</text>` : ''}</g>`;
+  }).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Llegadas tarde por día del mes">${g}<line x1="${L}" x2="${W - R}" y1="${T + ih}" y2="${T + ih}" stroke="var(--blue-200)"/>${bars}</svg>`;
+}
+function informesView() {
+  const r = ROLES[S.role];
+  if (!S.mes) { const ms = mesesDisponibles(); S.mes = ms[new Date().getDate() <= 5 ? 1 : 0]; }
+  const info = informe(), L = info.lista;
+  const dias = info.tot('dias'), tardes = info.tot('tardes');
+  const punt = dias ? Math.round((1 - tardes / dias) * 1000) / 10 : 0;
+  const nombreMes = `${MESES[info.m]} ${info.y}`;
+  const opt = (arr, v, f = a => a) => arr.map(a => `<option value="${a}" ${a === v ? 'selected' : ''}>${f(a)}</option>`).join('');
+  const filtrosRep = `<div class="filters">
+    <div class="field"><label for="rMes">Mes</label><select id="rMes">${opt(mesesDisponibles(), S.mes, k => { const [y, m] = k.split('-'); return `${MESES[m][0].toUpperCase() + MESES[m].slice(1)} ${y}`; })}</select></div>
+    ${r.sede ? `<div class="field"><label>Sede</label><select disabled><option>${r.sede}</option></select></div>` : `<div class="field"><label for="rSede">Sede</label><select id="rSede">${opt(['Todas', 'Bogotá', 'Santo Domingo'], S.repSede)}</select></div>`}
+    <div class="field"><label for="rArea">Área</label><select id="rArea">${opt(['Todas', ...AREAS], S.repArea)}</select></div>
+    <span style="flex:1"></span><button class="btn ghost" type="button" data-tool="excel">${ico('file')} Exportar a Excel</button></div>`;
+  if (!info.dias.length) return `<div class="hello"><div><div class="eyebrow">Intranet · informes</div><h1>Asistencia de <em>${nombreMes}</em></h1></div></div>${filtrosRep}
+    <div class="card" style="padding:24px;color:var(--ink-2)">Este mes todavía no tiene días cerrados. Elige el mes anterior para ver el informe completo.</div>`;
+  const kpi = (cls, val, l, sub, i) => `<div class="card kpi"><span class="sq ${cls}">${ico(i)}</span><div><b class="num">${val}</b><span>${l}</span>${sub ? `<small>${sub}</small>` : ''}</div></div>`;
+  const rk = L.filter(s => s.tardes).sort((a, b) => b.minT - a.minT || b.tardes - a.tardes).slice(0, 8);
+  const maxR = rk.length ? rk[0].minT : 1;
+  const sel = L.find(s => s.p.id === S.repSel);
+  const pc = s => s.dias ? Math.round((1 - s.tardes / s.dias) * 100) : 0;
+  const pcCls = v => v >= 95 ? 'ok' : v >= 85 ? 'warn' : 'bad';
+  const sortKeys = { minT: 'Minutos tarde', tardes: 'Llegadas tarde', almL: 'Almuerzos largos', temp: 'Salidas antes', extra: 'Horas extra', aus: 'Sin marcar', punt: 'Puntualidad' };
+  const ordenada = L.slice().sort((a, b) => S.repSort === 'punt' ? pc(a) - pc(b) : b[S.repSort] - a[S.repSort]);
+  const h = m => `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')}`;
+  const th = (k, l) => `<th class="n sortable" data-sort="${k}" aria-sort="${S.repSort === k ? 'descending' : 'none'}">${l}${S.repSort === k ? ' ↓' : ''}</th>`;
+  const rows = ordenada.map(s => `<tr class="clickable ${S.repSel === s.p.id ? 'hl' : ''}" data-sel="${s.p.id}"><td>${personCell(s.p)}</td>
+    <td class="n">${s.dias}</td><td class="n">${s.tardes}</td><td class="n">${s.minT}</td><td class="n">${s.tardes ? Math.round(s.minT / s.tardes) : 0}</td>
+    <td class="n">${s.almL}</td><td class="n">${s.temp}</td><td class="n">${h(s.extra)}</td><td class="n">${s.aus}</td>
+    <td class="n"><span class="chip ${pcCls(pc(s))}">${pc(s)} %</span></td></tr>`).join('');
+  return `<div class="hello"><div><div class="eyebrow">Intranet · informes de asistencia</div><h1>Asistencia de <em>${nombreMes}</em></h1>
+    <p>${info.sede === 'Todas' ? 'Las dos sedes' : `Sede ${info.sede}`}${S.repArea !== 'Todas' ? ` · ${S.repArea}` : ''}, comparado con la malla de cada día. ${info.dias.length} días laborales cerrados.</p></div></div>
+    ${filtrosRep}
+    <div class="kpis six">
+      ${kpi(pcCls(punt), `${punt} %`, 'Puntualidad del equipo', `${dias} jornadas marcadas`, 'check')}
+      ${kpi('warn', tardes, 'Llegadas tarde', `${info.tot('minT')} min de retraso en total`, 'clock')}
+      ${kpi('warn', info.tot('almL'), 'Almuerzos largos', 'Más de 5 min sobre lo permitido', 'lunch')}
+      ${kpi('warn', info.tot('temp'), 'Salidas antes de hora', '', 'out')}
+      ${kpi('bad', info.tot('aus'), 'Jornadas sin marcar', 'Programadas en la malla', 'x')}
+      ${kpi('mute', h(info.tot('extra')), 'Horas extra', 'Salidas 30 min o más después', 'moon')}
+    </div>
+    <div class="grid-rep">
+      <section class="card chartbox"><h3>Llegadas tarde por día</h3><div class="sub">Pasa el cursor sobre un día para ver quién llegó tarde.</div>
+        <div class="chart" id="chartDias">${chartDias(info)}</div><div class="tip" id="tip" hidden></div></section>
+      <section class="card rankbox"><h3>¿Quién llegó más tarde?</h3><div class="sub">Minutos de retraso acumulados en el mes. Toca un nombre para ver el detalle.</div>
+        <div class="rank">${rk.length ? rk.map((s, i) => `<button type="button" data-sel="${s.p.id}" class="${S.repSel === s.p.id ? 'sel' : ''}"><span class="pos">${i + 1}</span><span class="nm">${s.p.nombre}</span>
+          <span class="track"><span class="fill" style="display:block;width:${Math.max(3, s.minT / maxR * 100)}%"></span></span><span class="val">${s.minT} min · ${s.tardes} ${s.tardes === 1 ? 'vez' : 'veces'}</span></button>`).join('')
+          : '<p class="hint">Nadie llegó tarde este mes.</p>'}</div></section>
+    </div>
+    ${sel ? `<section class="card detail"><div class="sec-h" style="margin:0"><h3 style="font-size:18px">${sel.p.nombre} · ${nombreMes}</h3><button type="button" class="link" data-sel="0">Cerrar detalle</button></div>
+      <div class="hint">${sel.dias} jornadas · ${sel.tardes} llegadas tarde · ${sel.almL} almuerzos largos · ${sel.temp} salidas antes · ${sel.aus} sin marcar</div>
+      <div class="days">${sel.detalle.length ? sel.detalle.sort((a, b) => a.d - b.d).map(x => `<span class="chip ${x.cls}">${new Date(info.y, info.m, x.d).toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric' })} · ${x.txt}</span>`).join('') : '<span class="chip ok">Sin novedades en el mes</span>'}</div></section>` : ''}
+    <section style="margin-top:28px"><div class="sec-h"><h2>Detalle por persona</h2><span class="hint">Toca una columna para ordenar · toca una fila para ver sus días</span></div>
+      <div class="card tablewrap"><table><thead><tr><th>Persona</th><th class="n">Jornadas</th>${th('tardes', 'Llegadas tarde')}${th('minT', 'Min. tarde')}<th class="n">Promedio</th>${th('almL', 'Almuerzos largos')}${th('temp', 'Salidas antes')}${th('extra', 'Horas extra')}${th('aus', 'Sin marcar')}${th('punt', 'Puntualidad')}</tr></thead><tbody>${rows}</tbody></table></div></section>
+    <p class="hint" style="margin-top:14px">Prototipo: los meses anteriores se simulan con la malla de esta semana. En la versión real salen de las marcas guardadas.</p>`;
+}
+
 /* ── Eventos ── */
 let toastTimer;
 function toast(msg, rerender = true) {
@@ -640,15 +925,33 @@ document.addEventListener('submit', e => {
     if (!tit || !txt) { toast('Escribe un título y un mensaje para publicar.', false); return; }
     const p = me();
     S.comunicados.unshift({ id: Date.now(), de: p.nombre, cargo: ROLES[S.role].rol, fecha: 'Ahora', para: document.getElementById('cPara').value,
-      pin: document.getElementById('cPin').checked, req: document.getElementById('cReq').checked, titulo: tit, cuerpo: txt, leidos: [p.id] });
+      pin: document.getElementById('cPin').checked, req: document.getElementById('cReq').checked, titulo: tit, cuerpo: txt, leidos: [p.id], imgs: S.draft.splice(0) });
     toast('Comunicado publicado. El equipo lo verá en su inicio.');
   }
 });
 
 document.addEventListener('click', e => {
-  const t = e.target.closest('button'); if (!t) return;
+  const qr = document.getElementById('qres');
+  if (qr && !e.target.closest('.search')) qr.hidden = true;
+  const t = e.target.closest('button, tr[data-sel], th[data-sort]'); if (!t) return;
+  if (t.dataset.goto) {
+    const [k, id] = t.dataset.goto.split(':');
+    S.q = ''; S.hl = null; S.hlPer = null;
+    if (k === 'com') { S.view = 'comunicados'; S.qc = ''; S.hl = +id; }
+    else { S.view = 'malla'; S.filtroArea = 'Todas'; S.filtroSede = 'Todas'; S.hlPer = +id; }
+    render();
+    document.getElementById(`${k}-${id}`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    return;
+  }
+  if (t.dataset.lb) { const [c, i] = t.dataset.lb.split(':'); S.lb = { cid: +c, i: +i }; render(); return; }
+  if (t.dataset.lbclose) { S.lb = null; render(); return; }
+  if (t.dataset.lbmove) { const n = S.comunicados.find(x => x.id === S.lb.cid).imgs.length; S.lb.i = (S.lb.i + +t.dataset.lbmove + n) % n; render(); return; }
+  if (t.dataset.quitar) { S.draft.splice(+t.dataset.quitar, 1); document.getElementById('draftThumbs').innerHTML = draftThumbs(); return; }
+  if (t.dataset.sel !== undefined) { const v = +t.dataset.sel; S.repSel = v && S.repSel !== v ? v : null; render(); return; }
+  if (t.dataset.sort) { S.repSort = t.dataset.sort; render(); return; }
+  if (t.dataset.tool === 'drive') { toast('En la versión real abre el archivo en la carpeta Intranet / Comunicados del Drive.', false); return; }
   if (t.dataset.role) { S.role = t.dataset.role; render(); return; }
-  if (t.dataset.view) { S.view = t.dataset.view; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.view) { S.view = t.dataset.view; S.hl = null; S.hlPer = null; render(); window.scrollTo(0, 0); return; }
   if (t.id === 'markBtn') {
     const p = me(), m = S.marcas[p.id] = S.marcas[p.id] || {};
     const sig = pasosDe(turnoHoy(p.id)).find(x => m[x.k] == null); if (!sig) return;
@@ -665,6 +968,14 @@ document.addEventListener('change', e => {
   const el = e.target;
   if (el.id === 'hSim' && el.value) { S.horaSim = toMin(el.value); render(); return; }
   if (el.id === 'fArea') { S.filtroArea = el.value; render(); return; }
+  if (el.id === 'rMes') { S.mes = el.value; S.repSel = null; render(); return; }
+  if (el.id === 'rSede') { S.repSede = el.value; S.repSel = null; render(); return; }
+  if (el.id === 'rArea') { S.repArea = el.value; S.repSel = null; render(); return; }
+  if (el.id === 'cImg') {
+    const files = [...el.files].filter(f => f.type.startsWith('image/'));
+    files.forEach(f => { const fr = new FileReader(); fr.onload = () => { S.draft.push({ nombre: f.name, src: fr.result }); const d = document.getElementById('draftThumbs'); if (d) d.innerHTML = draftThumbs(); }; fr.readAsDataURL(f); });
+    el.value = ''; return;
+  }
   if (el.id === 'fSede') { S.filtroSede = el.value; render(); return; }
   if (el.matches('input.tturno')) {
     const t = TURNOS[el.dataset.k], f = el.dataset.f, v = el.value.trim();
@@ -682,11 +993,45 @@ document.addEventListener('change', e => {
   }
 });
 
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (el.id === 'q') { S.q = el.value; const r = document.getElementById('qres'); r.innerHTML = resultados(S.q); r.hidden = !S.q.trim(); }
+  if (el.id === 'qc') { S.qc = el.value; document.getElementById('newsList').innerHTML = newsList(); }
+});
+document.addEventListener('focusin', e => {
+  if (e.target.id === 'q' && S.q.trim()) { const r = document.getElementById('qres'); r.innerHTML = resultados(S.q); r.hidden = false; }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { if (S.lb) { S.lb = null; render(); } const r = document.getElementById('qres'); if (r) r.hidden = true; }
+  if (S.lb && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { const n = S.comunicados.find(x => x.id === S.lb.cid).imgs.length; S.lb.i = (S.lb.i + (e.key === 'ArrowRight' ? 1 : -1) + n) % n; render(); }
+});
+document.addEventListener('mousemove', e => {
+  const tip = document.getElementById('tip'); if (!tip) return;
+  const g = e.target.closest && e.target.closest('#chartDias g[data-dia]');
+  document.querySelectorAll('#chartDias g.on').forEach(x => x !== g && x.classList.remove('on'));
+  if (!g) { tip.hidden = true; return; }
+  g.classList.add('on');
+  const info = informe(), d = +g.dataset.dia, lst = info.porDia[d] || [];
+  const f = new Date(info.y, info.m, d).toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
+  tip.innerHTML = `<b>${f}</b><br>${lst.length ? `${lst.length} ${lst.length === 1 ? 'llegada tarde' : 'llegadas tarde'}<br>` + lst.sort((a, b) => b.min - a.min).map(x => `${esc(x.n)} · ${x.min} min`).join('<br>') : 'Nadie llegó tarde'}`;
+  tip.hidden = false;
+  const box = g.closest('.chartbox').getBoundingClientRect();
+  let x = e.clientX - box.left + 14, y = e.clientY - box.top + 14;
+  if (x + 240 > box.width) x = e.clientX - box.left - 250;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+});
+
 setInterval(() => {
   const c = document.getElementById('clock'); if (!c) return;
   c.innerHTML = `${fmt(nowMin())}<small>:${String(new Date().getSeconds()).padStart(2, '0')}</small>`;
 }, 1000);
 
 if (realMin() < 7 * 60 || realMin() >= 20 * 60) S.horaSim = 10 * 60 + 15;
+S.comunicados.forEach(c => {
+  if (c.imgs === 'TARIFA') c.imgs = [{ nombre: 'tarifario-riviera-maya.png', src: tablaImg() }];
+  if (c.imgs === 'FAM') c.imgs = [
+    { nombre: 'famtrip-punta-cana.jpg', src: poster('Famtrip Punta Cana', '14 al 17 de noviembre · 4 cupos', '#3b6ca7', '#00a8a8', 'WAKANDA TRAVEL') },
+    { nombre: 'itinerario-famtrip.jpg', src: poster('Itinerario', 'Bávaro · Saona · Cap Cana', '#1f3f63', '#3b6ca7', 'DÍA A DÍA') }];
+});
 render();
 </script>

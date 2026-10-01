@@ -119,11 +119,23 @@ Marcaciones del día: **entrada · salida a almuerzo · regreso de almuerzo · s
 
 La validación por IP y computador autorizado **se deja para el final**. Todo se construye y se prueba sin ella; antes de salir en vivo se registra la IP de cada sede, se activa y se prueba desde la oficina.
 
+### Informes para gerencia
+
+- Pestaña **Informes**: la gerente ve las dos sedes y cada directora de operaciones ve solo su sede.
+- Filtros por **mes** (últimos 6), sede y área. Exportar a Excel.
+- Indicadores: puntualidad del equipo, llegadas tarde y minutos de retraso, almuerzos largos, salidas antes de hora, jornadas sin marcar y horas extra.
+- Gráfica de llegadas tarde por día; al pasar el cursor muestra quién llegó tarde y cuántos minutos.
+- Ranking "¿Quién llegó más tarde?" por minutos acumulados; al tocar un nombre se ven sus días con novedad.
+- Tabla por persona, que se puede ordenar por cualquier indicador.
+
 ## 4. Comunicación interna
 
 - Gerencia publica comunicados para todos, por área, por sede o para personas concretas.
 - Opción "requiere confirmación de lectura" y reporte de quién leyó y quién no.
 - Aviso por correo al publicar.
+- **Imágenes:** quien publica adjunta una o varias imágenes. Se guardan en la carpeta **Intranet / Comunicados** del Drive de `georgina.avila@wakanda.travel`. En la intranet se ven en miniatura; al tocarlas se abren en grande, con "Abrir en Drive".
+- Como el equipo entra con correos `.com.co` (no Google), las imágenes se muestran **dentro de la intranet** (solo para quien inició sesión), sin compartir la carpeta con enlace público.
+- **Buscador:** en la barra superior busca comunicados, personas y herramientas (sin importar tildes). En Comunicados hay un buscador propio que resalta las coincidencias.
 
 ## 5. Diseño
 
