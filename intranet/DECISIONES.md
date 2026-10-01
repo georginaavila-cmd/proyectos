@@ -85,7 +85,7 @@ Objetivo: que nadie marque desde el celular, la casa o un computador que no es e
 
 | Herramienta | Qué hace | Dónde vive / enlace | Cómo se entra |
 |---|---|---|---|
-| OMNIAXIS | Herramienta de operaciones | AppSheet. **PENDIENTE:** enlace de la app | Cuenta de Google `@wakanda.travel` compartida, con la sesión abierta en Chrome |
+| OMNIAXIS | Herramienta de operaciones | AppSheet: https://www.appsheet.com/start/66a528eb-aa3d-4979-ab72-52c53f755fd8?platform=desktop | Cuenta de Google `@wakanda.travel` compartida, con la sesión abierta en Chrome |
 | Wakanda Documentos | Cotizaciones, confirmaciones, vouchers e itinerarios en PDF | https://claude.ai/artifact/1PK4MfNXHBSgoozg83oksE | Cuenta de Claude compartida; el equipo solo usa el gestor de documentos |
 | KAM 360 | Visitas, prospectos y solicitudes a Operaciones del equipo comercial | https://georginaavila-cmd.github.io/kam360/ | Abierto; cada KAM elige su nombre al entrar |
 
