@@ -124,7 +124,9 @@ La validación por IP y computador autorizado **se deja para el final**. Todo se
 
 ## 5. Diseño
 
-Se usa el sistema de diseño de `referencia/sistema-diseno/` (tokens, Lato/Jost, Turquesa Trail). **PENDIENTE:** el logo en SVG o PNG (a color y en blanco), que no venía en el sistema.
+Se usa el sistema de diseño de `referencia/sistema-diseno/` (tokens, Lato/Jost, Turquesa Trail) y el mismo lenguaje visual de KAM 360 y Wakanda Documentos: solo tema claro, barra blanca con logo y filete turquesa, titulares azul noche con una palabra en turquesa, tarjetas blancas con ícono en cuadro turquesa suave, pie con eslogan y RNT.
+
+Logo: `referencia/sistema-diseno/logo-wakanda.png` (500 px), tomado de Wakanda Documentos. **PENDIENTE:** versión en SVG y versión en blanco.
 
 ## 6. Administración
 
