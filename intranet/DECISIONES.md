@@ -48,12 +48,23 @@ georgina.avila · operaciones · contabilidad · comercialmin · emisiones · ma
 2. Muchas cuentas son de cargo (comercial1, reservas…), no de persona. La intranet necesita saber qué persona está detrás de cada una para confirmar lecturas y asignar permisos.
 3. Hay al menos dos países, así que la intranet debe manejar **sede** además de **área**.
 
-### Forma de entrar (propuesta revisada)
+### Forma de entrar (decidida con Georgina Ávila)
 
-- **Código por correo:** la persona escribe su correo de Wakanda, recibe un código o enlace y entra. Funciona con cualquier proveedor (hosting `.com.co`, Outlook RD, Google).
-- **Botones "Entrar con Google" y "Entrar con Microsoft"** para quienes tienen esas cuentas: entran con un clic.
-- **Sesión recordada** por 90 días en cada computador: en el día a día, la intranet abre sin pedir nada.
-- Solo entran correos de una **lista autorizada** que administra la intranet; los dominios por sí solos no bastan.
+- **Cuenta dueña:** `georgina.avila@wakanda.travel`. Es dueña de la infraestructura (Drive, bases de datos, servicios de la intranet). **No se comparte ni se usa para entrar** como colaborador.
+- **Cada persona entra con su propio correo corporativo** `@wakandatravel.com.co` (y `@wakandatravel.com.do` para RD). No depende de Google.
+- **Código por correo:** escribe su correo, le llega un código de 6 dígitos y entra. La sesión queda recordada en ese computador (90 días).
+- **App en el escritorio:** la intranet se instala como aplicación (ícono propio, ventana sin barra del navegador) y puede abrirse sola al encender el computador.
+- Solo entran correos de la **lista autorizada**.
+- Requisito técnico: para que los códigos lleguen sin caer en spam se envían desde `intranet@wakandatravel.com.co`, lo que exige agregar registros DNS (SPF y DKIM) en el hosting. **PENDIENTE:** quién administra el hosting y el DNS.
+
+### Roles
+
+| Rol | Puede |
+|---|---|
+| Dueña (Georgina) | Todo: usuarios, herramientas, configuración, reportes |
+| Gerencia | Publicar comunicados, ver asistencia de todos, aprobar correcciones |
+| Jefe de área | Ver la asistencia de su equipo, aprobar sus correcciones |
+| Colaborador | Marcar asistencia, leer comunicados, abrir sus herramientas |
 
 ## 2. Herramientas a enlazar
 
@@ -63,7 +74,35 @@ georgina.avila · operaciones · contabilidad · comercialmin · emisiones · ma
 | Wakanda Documentos | Cotizaciones, confirmaciones, vouchers e itinerarios en PDF | Plugin de Claude (este repositorio) | **PENDIENTE** | Cuenta de Claude |
 | KAM360 | **PENDIENTE** | **PENDIENTE** | **PENDIENTE** | **PENDIENTE** |
 
-## 3. Administración
+## 3. Control de asistencia
+
+Marcaciones del día: **entrada · salida a almuerzo · regreso de almuerzo · salida**.
+
+- Botón grande en el inicio que muestra la siguiente marcación que toca y la hora en vivo.
+- Hora tomada del servidor, no del computador, para que no se pueda adelantar el reloj.
+- Nadie edita sus marcas: si olvidó marcar, pide una corrección con motivo y la aprueba su jefe o gerencia. Todo queda registrado.
+- Reportes por persona, área, sede y rango de fechas, exportables a Excel para nómina: llegadas tarde, almuerzos largos, horas trabajadas, horas extra.
+- Aviso de privacidad y autorización de tratamiento de datos (Ley 1581 de 2012) al primer ingreso.
+- Validar con asesoría laboral las reglas de jornada vigentes (Ley 2101 de 2021 y reforma laboral Ley 2466 de 2025) y las de RD.
+
+| Dato | Valor |
+|---|---|
+| Horario por sede (días, entrada, salida, tiempo de almuerzo) | **PENDIENTE** |
+| ¿Hay personas en teletrabajo o en campo? | **PENDIENTE** |
+| ¿Marcar solo desde la red de la oficina? | **PENDIENTE** |
+| ¿RD también marca asistencia? | **PENDIENTE** |
+
+## 4. Comunicación interna
+
+- Gerencia publica comunicados para todos, por área, por sede o para personas concretas.
+- Opción "requiere confirmación de lectura" y reporte de quién leyó y quién no.
+- Aviso por correo al publicar.
+
+## 5. Diseño
+
+Se usa el sistema de diseño de `referencia/sistema-diseno/` (tokens, Lato/Jost, Turquesa Trail). **PENDIENTE:** el logo en SVG o PNG (a color y en blanco), que no venía en el sistema.
+
+## 6. Administración
 
 | Dato | Valor |
 |---|---|
