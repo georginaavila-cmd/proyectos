@@ -92,6 +92,8 @@ Objetivo: que nadie marque desde el celular, la casa o un computador que no es e
 | Registro abierto | Apagado (solo la administración crea cuentas); contraseña mínima de 8 caracteres |
 | Función `crear-usuario` | Publicada; verifica la sesión y rechaza a quien no es administradora (probado: 403) |
 | Cuenta de la dueña | `georgina.avila@wakanda.travel` creada por Georgina con su contraseña; perfil Gerente + administradora, sede Bogotá |
+| Repositorio de la intranet | https://github.com/georginaavila-cmd/intranet-wakanda (público, como KAM 360). Desde aquí el código vive allí; `intranet/app/` queda como copia de referencia |
+| Página publicada | https://georginaavila-cmd.github.io/intranet-wakanda/ (GitHub Pages, rama `main`) |
 
 ## 2. Herramientas a enlazar
 
