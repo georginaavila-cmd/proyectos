@@ -91,7 +91,7 @@ Objetivo: que nadie marque desde el celular, la casa o un computador que no es e
 | Base de datos instalada | 2 de octubre de 2026, vía Composio: 15 tablas con RLS, 33 reglas, 5 reglas de archivos, carpetas `comunicados` y `soportes` |
 | Registro abierto | Apagado (solo la administración crea cuentas); contraseña mínima de 8 caracteres |
 | Función `crear-usuario` | Publicada; verifica la sesión y rechaza a quien no es administradora (probado: 403) |
-| Pendiente | Cuenta de la dueña: la crea Georgina en Authentication → Users con su propia contraseña; luego se le asigna el perfil de administradora |
+| Cuenta de la dueña | `georgina.avila@wakanda.travel` creada por Georgina con su contraseña; perfil Gerente + administradora, sede Bogotá |
 
 ## 2. Herramientas a enlazar
 
