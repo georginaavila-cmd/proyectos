@@ -147,6 +147,9 @@ La validación por IP y computador autorizado **se deja para el final**. Todo se
 - Gerencia publica comunicados para todos, por área, por sede o para personas concretas.
 - Opción "requiere confirmación de lectura" y reporte de quién leyó y quién no.
 - Aviso por correo al publicar.
+- **Comunicados sin confirmar (funcionario):** un aviso en su inicio ("Tienes N comunicados sin confirmar"), un número junto a la pestaña Comunicados, los pendientes resaltados en rosa y un filtro "Sin confirmar". Un comunicado cuenta como leído solo cuando la persona toca **Confirmar lectura**.
+- Cada comunicado cuenta solo a sus destinatarios: todo el equipo, un área o una sede.
+- **Informe de la gerente:** sección "Confirmación de comunicados" del mes, con cuántos confirmaron, quién falta y un botón **Recordar**. En "Detalle por persona", la columna "Comunicados sin confirmar". La gerente también ve quién falta en cada comunicado.
 - **Imágenes:** quien publica adjunta una o varias imágenes. Se guardan en la carpeta **Intranet / Comunicados** del Drive de `georgina.avila@wakanda.travel`. En la intranet se ven en miniatura; al tocarlas se abren en grande, con "Abrir en Drive".
 - Como el equipo entra con correos `.com.co` (no Google), las imágenes se muestran **dentro de la intranet** (solo para quien inició sesión), sin compartir la carpeta con enlace público.
 - **Buscador:** en la barra superior busca comunicados, personas y herramientas (sin importar tildes). En Comunicados hay un buscador propio que resalta las coincidencias.

@@ -292,6 +292,17 @@ tr.clickable:hover td { background: var(--blue-050); }
 .addrow { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 14px 16px; border-top: 1px solid var(--line); }
 .addrow select { padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; min-width: 220px; }
 
+.alerta { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; background: var(--pink-100); border: 1px solid var(--pink); border-left: 4px solid var(--pink); border-radius: 10px; padding: 14px 18px; margin: -8px 0 28px; }
+.alerta .sq { background: #fff; color: #b04a66; }
+.alerta > div { flex: 1; min-width: 220px; display: grid; gap: 2px; }
+.alerta > div > b { color: var(--navy); font-family: var(--f-display); font-size: 17px; }
+.alerta > div > span { font-size: 14px; color: var(--ink-2); }
+.note.unread { border-left: 4px solid var(--pink); background: #fffafb; }
+.lect td { white-space: normal; }
+.lect .tit b { color: var(--navy); display: block; }
+.lect .falt { display: flex; gap: 4px; flex-wrap: wrap; max-width: 360px; }
+.lect .bar { max-width: 140px; }
+
 /* Reporte */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
 .kpi { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -432,7 +443,7 @@ const ROLES = {
   gerencia: { persona: 8, rol: 'Gerente', puedeEditar: () => true }
 };
 const S = {
-  logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', modSol: true, aprobadores: [
+  logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', modSol: true, comFiltro: 'todos', aprobadores: [
     { pid: 4, sede: 'Bogotá', tipos: ['vacaciones', 'permiso', 'incapacidad'], nivel: 'aprobar' },
     { pid: 10, sede: 'Santo Domingo', tipos: ['vacaciones', 'permiso', 'incapacidad'], nivel: 'aprobar' },
     { pid: 7, sede: 'Todas', tipos: ['incapacidad'], nivel: 'aprobar' },
@@ -460,15 +471,24 @@ const S = {
     11: { entrada: '10:21', salidaAlm: '14:05' }
   },
   comunicados: [
-    { id: 1, de: 'Carolina Peña', cargo: 'Gerente', fecha: 'Hoy, 8:05', para: 'Todo el equipo', pin: true, req: true,
+    { id: 4, dia: 0, de: 'Natalia Suárez', cargo: 'Directora de Operaciones Colombia', fecha: 'Hoy, 9:30', para: 'Operaciones / Reservas', req: true,
+      titulo: 'Nuevo paso antes de enviar vouchers',
+      cuerpo: 'Desde hoy, antes de enviar un voucher, confirmen con el proveedor la hora de recogida y anótenla en OMNIAXIS.', leidos: [4, 10] },
+    { id: 1, dia: 0, de: 'Carolina Peña', cargo: 'Gerente', fecha: 'Hoy, 8:05', para: 'Todo el equipo', pin: true, req: true,
       titulo: 'Nueva política de tarifas con proveedores en Cancún',
       cuerpo: 'Desde el lunes las cotizaciones de Riviera Maya usan el tarifario actualizado. Revisen la carpeta de tarifas antes de enviar propuestas.', leidos: [2, 5, 8, 9, 6, 3], imgs: 'TARIFA' },
-    { id: 2, de: 'Natalia Suárez', cargo: 'Directora de Operaciones Colombia', fecha: 'Ayer, 16:40', para: 'Sede Bogotá', req: false,
+    { id: 2, dia: -1, de: 'Natalia Suárez', cargo: 'Directora de Operaciones Colombia', fecha: 'Ayer, 16:40', para: 'Sede Bogotá', req: false,
       titulo: 'Turnos de sábado en octubre',
       cuerpo: 'La malla de octubre ya está publicada. Si necesitan cambiar un sábado, pídanlo por aquí antes del jueves.', leidos: [4, 1, 5] },
-    { id: 3, de: 'Carolina Peña', cargo: 'Gerente', fecha: 'Lun, 10:00', para: 'Todo el equipo', req: true,
+    { id: 3, dia: -3, de: 'Carolina Peña', cargo: 'Gerente', fecha: 'Hace 3 días', para: 'Todo el equipo', req: true,
       titulo: 'Famtrip a Punta Cana: inscripciones abiertas',
-      cuerpo: 'Hay 4 cupos para el viaje de familiarización del 14 al 17 de noviembre. Prioridad para el equipo comercial.', leidos: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11], imgs: 'FAM' }
+      cuerpo: 'Hay 4 cupos para el viaje de familiarización del 14 al 17 de noviembre. Prioridad para el equipo comercial.', leidos: [1, 2, 3, 4, 5, 6, 8, 9, 10, 11], imgs: 'FAM' },
+    { id: 5, dia: 'PREV-22', de: 'Carolina Peña', cargo: 'Gerente', fecha: 'PREV-22', para: 'Comercial / KAM', req: true,
+      titulo: 'Protocolo de respuesta a agencias en 2 horas',
+      cuerpo: 'Toda solicitud de cotización de una agencia se responde en máximo 2 horas hábiles, aunque sea para confirmar que la estamos trabajando.', leidos: [2, 3, 8] },
+    { id: 6, dia: 'PREV-5', de: 'Carolina Peña', cargo: 'Gerente', fecha: 'PREV-5', para: 'Todo el equipo', req: true,
+      titulo: 'Cierre contable del mes: fechas límite',
+      cuerpo: 'Las facturas de proveedores del mes se reciben hasta el día 25. Después de esa fecha pasan al mes siguiente.', leidos: [1, 2, 3, 4, 5, 7, 8, 9, 10] }
   ]
 };
 
@@ -578,11 +598,11 @@ function appShell() {
   if (S.modSol || S.role === 'gerencia') tabs.push(['solicitudes', 'Solicitudes']);
   if (!tabs.find(t => t[0] === S.view)) S.view = 'inicio';
   const views = { inicio: inicioView, malla: mallaView, comunicados: comunicadosView, asistencia: asistenciaView, informes: informesView, solicitudes: solicitudesView };
-  const pend = porAprobar().length;
+  const pend = porAprobar().length, noLeidos = S.role === 'gerencia' ? 0 : sinConfirmar(me().id).length;
   return `<header class="top"><div class="wrap">
       <div class="brand"><img src="${LOGO}" alt=""><span>Wakanda Travel</span></div>
       <nav class="tabs" aria-label="Secciones">${tabs.map(([k, l]) =>
-        `<button type="button" data-view="${k}" ${S.view === k ? 'aria-current="page"' : ''}>${l}${k === 'solicitudes' && pend && S.modSol ? `<span class="badge" aria-label="${pend} por aprobar">${pend}</span>` : ''}</button>`).join('')}</nav>
+        `<button type="button" data-view="${k}" ${S.view === k ? 'aria-current="page"' : ''}>${l}${k === 'solicitudes' && pend && S.modSol ? `<span class="badge" aria-label="${pend} por aprobar">${pend}</span>` : ''}${k === 'comunicados' && noLeidos ? `<span class="badge" aria-label="${noLeidos} sin confirmar">${noLeidos}</span>` : ''}</button>`).join('')}</nav>
       <div class="search" role="search">${ico('search')}<input id="q" type="search" placeholder="Buscar comunicados, personas, herramientas" aria-label="Buscar en la intranet" autocomplete="off" value="${esc(S.q)}"><div class="qres" id="qres" hidden></div></div>
       <div class="me"><div class="me-txt"><b>${p.nombre}</b><br><span>${r.rol} · ${p.sede}</span></div><div class="avatar" title="${p.nombre} · ${r.rol} · ${p.sede}">${initials(p.nombre)}</div></div>
     </div></header>
@@ -593,6 +613,13 @@ function appShell() {
 
 const fechaLarga = () => new Date().toLocaleDateString('es-CO', { weekday: 'long', day: 'numeric', month: 'long' });
 
+function avisoLectura() {
+  const n = sinConfirmar(me().id).length;
+  if (!n || S.role === 'gerencia') return '';
+  return `<div class="alerta" role="status"><span class="sq">${ico('mega')}</span><div><b>Tienes ${n} ${n === 1 ? 'comunicado' : 'comunicados'} sin confirmar</b>
+    <span>Léelos y toca <b>Confirmar lectura</b>. La gerencia ve quién ya los leyó.</span></div>
+    <button type="button" class="btn sm teal" data-comf="pend" data-view="comunicados">Ver ${n === 1 ? 'comunicado' : 'comunicados'}</button></div>`;
+}
 function inicioView() {
   const p = me(), h = Math.floor(nowMin() / 60);
   const saludo = h < 12 ? 'Buenos días' : h < 19 ? 'Buenas tardes' : 'Buenas noches';
@@ -600,6 +627,7 @@ function inicioView() {
       <div class="eyebrow">Intranet · ${fechaLarga()}</div>
       <h1>${saludo}, <em>${p.nombre.split(' ')[0]}</em></h1>
       <p>${p.area} · Sede ${p.sede}. Marca tu jornada y abre tus herramientas desde aquí.</p></div></div>
+    ${avisoLectura()}
     <div class="grid-home">
       <div class="col">${passView()}
         <section><div class="sec-h"><h2>Herramientas</h2><span class="hint">Se abren en una pestaña nueva</span></div>${toolsView()}</section></div>
@@ -670,11 +698,14 @@ function toolsView() {
 }
 
 function noteView(c, compact) {
-  const yo = me().id, leido = c.leidos.includes(yo), total = PEOPLE.length, pct = Math.round(c.leidos.length / total * 100);
+  const yo = me().id, leido = c.leidos.includes(yo), dest = destinatarios(c), conf = dest.filter(p => c.leidos.includes(p.id)), total = dest.length, pct = Math.round(conf.length / total * 100);
+  const soyDest = dest.some(p => p.id === yo);
   let foot = '';
   if (S.role === 'gerencia' && c.req) {
-    foot = `<div class="note-foot"><span class="hint num">Leído por ${c.leidos.length} de ${total}</span><div class="bar"><span style="width:${pct}%"></span></div></div>`;
-  } else if (c.req) {
+    const faltan = dest.filter(p => !c.leidos.includes(p.id));
+    foot = `<div class="note-foot"><span class="hint num">Confirmado por ${conf.length} de ${total}</span><div class="bar"><span style="width:${pct}%"></span></div></div>
+      ${!compact && faltan.length ? `<div class="hint">Faltan: ${faltan.map(p => esc(p.nombre)).join(', ')}</div>` : ''}`;
+  } else if (c.req && soyDest) {
     foot = `<div class="note-foot">${leido ? `<span class="chip ok">${ico('check')} Leído</span>`
       : `<span class="chip warn">Requiere confirmación</span><button type="button" class="btn sm teal" data-leer="${c.id}">Confirmar lectura</button>`}</div>`;
   }
@@ -682,20 +713,24 @@ function noteView(c, compact) {
   const gal = !imgs.length ? '' : compact
     ? `<div class="thumbs">${imgs.slice(0, 3).map((im, i) => `<button type="button" class="thumb sm" data-lb="${c.id}:${i}" aria-label="Ver imagen ${im.nombre}"><img src="${im.src}" alt=""></button>`).join('')}</div>`
     : `<div class="thumbs">${imgs.map((im, i) => `<button type="button" class="thumb" data-lb="${c.id}:${i}" aria-label="Ver imagen ${im.nombre}"><img src="${im.src}" alt=""></button>`).join('')}</div>`;
-  return `<article class="card note ${c.pin ? 'pin' : ''} ${S.hl === c.id ? 'hl' : ''}" id="com-${c.id}">
+  const pendiente = c.req && soyDest && !leido && S.role !== 'gerencia';
+  return `<article class="card note ${c.pin ? 'pin' : ''} ${pendiente ? 'unread' : ''} ${S.hl === c.id ? 'hl' : ''}" id="com-${c.id}">
     <div class="note-meta">${c.pin ? `<span class="chip info">${ico('pin')} Fijado</span>` : ''}<span>${c.de} · ${c.cargo}</span><span>·</span><span>${c.fecha}</span>${imgs.length ? `<span>·</span><span class="imgcount">${ico('image')} ${imgs.length}</span>` : ''}</div>
     <h3>${mk(c.titulo, compact ? '' : S.qc)}</h3>${compact ? '' : `<p>${mk(c.cuerpo, S.qc)}</p><div class="hint">Para: ${c.para}</div>`}${gal}${foot}</article>`;
 }
 
 function newsList() {
-  const list = S.comunicados.filter(c => !S.qc || match(`${c.titulo} ${c.cuerpo} ${c.de} ${c.para}`, S.qc));
+  const mios = sinConfirmar(me().id).map(c => c.id);
+  const list = S.comunicados.filter(c => (!S.qc || match(`${c.titulo} ${c.cuerpo} ${c.de} ${c.para}`, S.qc)) && (S.comFiltro !== 'pend' || mios.includes(c.id)));
+  if (!list.length && S.comFiltro === 'pend' && !S.qc) return `<div class="card" style="padding:18px 20px;color:var(--ink-2)">${ico('check')} Estás al día: no tienes comunicados por confirmar.</div>`;
   return list.length ? list.map(c => noteView(c, false)).join('')
     : `<div class="card" style="padding:18px 20px;color:var(--ink-2)">No hay comunicados que digan "${esc(S.qc)}". Prueba con otra palabra.</div>`;
 }
 function newsSection(compact) {
   if (compact) return `<section><div class="sec-h"><h2>Comunicados</h2><button type="button" class="link" data-view="comunicados">Ver todos</button></div>
-    <div class="news">${S.comunicados.slice(0, 3).map(c => noteView(c, true)).join('')}</div></section>`;
-  return `<section><div class="sec-h"><h2>Comunicados</h2></div>
+    <div class="news">${S.comunicados.slice().sort((a, b) => sinConfirmar(me().id).includes(b) - sinConfirmar(me().id).includes(a)).slice(0, 3).map(c => noteView(c, true)).join('')}</div></section>`;
+  const n = sinConfirmar(me().id).length;
+  return `<section><div class="sec-h"><h2>Comunicados</h2>${S.role !== 'gerencia' ? `<div class="seg" role="group" aria-label="Filtrar comunicados"><button type="button" data-comf="todos" aria-pressed="${S.comFiltro !== 'pend'}">Todos</button><button type="button" data-comf="pend" aria-pressed="${S.comFiltro === 'pend'}">Sin confirmar (${n})</button></div>` : ''}</div>
     <div class="search" style="max-width:none;margin-bottom:14px">${ico('search')}<input id="qc" type="search" placeholder="Buscar en comunicados" aria-label="Buscar en comunicados" value="${esc(S.qc)}" autocomplete="off"></div>
     <div class="news" id="newsList">${newsList()}</div></section>`;
 }
@@ -800,6 +835,10 @@ function asistenciaView() {
     <div class="toolbar"><span class="hint">Las horas en gris son lo programado; todavía no hay marca.</span>${S.role === 'gerencia' ? filtros() : ''}</div>
     <div class="card tablewrap"><table><thead><tr><th>Persona</th><th>Turno</th><th>Entrada</th><th>Sale a almorzar</th><th>Regresa</th><th>Salida</th><th>Estado</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
+
+/* ── Confirmación de lectura ── */
+const destinatarios = c => PEOPLE.filter(p => c.para === 'Todo el equipo' || c.para === p.area || c.para === `Sede ${p.sede}`);
+const sinConfirmar = pid => S.comunicados.filter(c => c.req && !c.leidos.includes(pid) && destinatarios(c).some(p => p.id === pid));
 
 /* ── Búsqueda ── */
 const norm = t => String(t).normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
@@ -907,9 +946,16 @@ function informe() {
     if (g.salOff < 0) { s.temp++; s.detalle.push({ d: g.d, txt: `Salió ${-g.salOff} min antes`, cls: 'warn' }); }
     if (g.salOff > 30) s.extra += g.salOff;
   }
+  const pref = `${y}-${pad2(m + 1)}`;
+  const coms = S.comunicados.filter(c => c.req && c.iso.startsWith(pref)).map(c => {
+    const dest = destinatarios(c).filter(p => ids.has(p.id));
+    return { c, dest, conf: dest.filter(p => c.leidos.includes(p.id)), faltan: dest.filter(p => !c.leidos.includes(p.id)) };
+  }).filter(x => x.dest.length);
+  for (const x of coms) for (const p of x.faltan) st[p.id].sinConf = (st[p.id].sinConf || 0) + 1;
+  for (const s2 of Object.values(st)) s2.sinConf = s2.sinConf || 0;
   const lista = Object.values(st);
   const tot = k => lista.reduce((a, s) => a + s[k], 0);
-  return { y, m, dias, lista, porDia, tot, sede };
+  return { y, m, dias, lista, porDia, tot, sede, coms };
 }
 function chartDias(info) {
   const W = 720, H = 220, L = 30, R = 8, T = 12, B = 26, iw = W - L - R, ih = H - T - B;
@@ -927,6 +973,19 @@ function chartDias(info) {
     return `<g data-dia="${d}"><rect class="hit" x="${x}" y="${T}" width="${bw}" height="${ih}"/>${v ? `<path class="bar" d="${path}"/>` : ''}${lbl ? `<text x="${x + bw / 2}" y="${H - 8}" text-anchor="middle">${d}</text>` : ''}</g>`;
   }).join('');
   return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Llegadas tarde por día del mes">${g}<line x1="${L}" x2="${W - R}" y1="${T + ih}" y2="${T + ih}" stroke="var(--blue-200)"/>${bars}</svg>`;
+}
+function lecturaSection(info, nombreMes) {
+  const cs = info.coms;
+  const totD = cs.reduce((a, x) => a + x.dest.length, 0), totC = cs.reduce((a, x) => a + x.conf.length, 0);
+  const pct = totD ? Math.round(totC / totD * 100) : 100;
+  const rows = cs.map(x => { const pp = Math.round(x.conf.length / x.dest.length * 100);
+    return `<tr><td class="tit"><b>${esc(x.c.titulo)}</b><span class="hint">${esc(x.c.fecha)} · Para: ${esc(x.c.para)}</span></td>
+      <td><span class="num" style="font-weight:600;color:var(--navy)">${x.conf.length} de ${x.dest.length}</span><div class="bar" style="margin-top:6px"><span style="width:${pp}%"></span></div></td>
+      <td>${x.faltan.length ? `<div class="falt">${x.faltan.map(p => `<span class="chip warn">${esc(p.nombre)}</span>`).join('')}</div>` : '<span class="chip ok">Todos confirmaron</span>'}</td>
+      <td>${x.faltan.length ? `<button type="button" class="btn sm ghost" data-recordar="${x.c.id}">Recordar</button>` : ''}</td></tr>`; }).join('');
+  return `<section style="margin-top:28px"><div class="sec-h"><h2>Confirmación de comunicados</h2><span class="hint">${cs.length ? `${pct} % confirmados · ${totD - totC} pendientes en ${nombreMes}` : ''}</span></div>
+    ${cs.length ? `<div class="card tablewrap"><table class="lect"><thead><tr><th>Comunicado</th><th>Confirmaron</th><th>Faltan por confirmar</th><th></th></tr></thead><tbody>${rows}</tbody></table></div>`
+      : `<div class="card" style="padding:18px 20px;color:var(--ink-2)">En ${nombreMes} no hubo comunicados con confirmación de lectura para este grupo.</div>`}</section>`;
 }
 function informesView() {
   const r = ROLES[S.role];
@@ -955,7 +1014,7 @@ function informesView() {
   const th = (k, l) => `<th class="n sortable" data-sort="${k}" aria-sort="${S.repSort === k ? 'descending' : 'none'}">${l}${S.repSort === k ? ' ↓' : ''}</th>`;
   const rows = ordenada.map(s => `<tr class="clickable ${S.repSel === s.p.id ? 'hl' : ''}" data-sel="${s.p.id}"><td>${personCell(s.p)}</td>
     <td class="n">${s.dias}</td><td class="n">${s.tardes}</td><td class="n">${s.minT}</td><td class="n">${s.tardes ? Math.round(s.minT / s.tardes) : 0}</td>
-    <td class="n">${s.almL}</td><td class="n">${s.temp}</td><td class="n">${h(s.extra)}</td><td class="n">${s.aus}</td><td class="n">${s.just}</td>
+    <td class="n">${s.almL}</td><td class="n">${s.temp}</td><td class="n">${h(s.extra)}</td><td class="n">${s.aus}</td><td class="n">${s.just}</td><td class="n">${s.sinConf ? `<span class="chip warn">${s.sinConf}</span>` : '0'}</td>
     <td class="n"><span class="chip ${pcCls(pc(s))}">${pc(s)} %</span></td></tr>`).join('');
   return `<div class="hello"><div><div class="eyebrow">Intranet · informes de asistencia</div><h1>Asistencia de <em>${nombreMes}</em></h1>
     <p>${info.sede === 'Todas' ? 'Las dos sedes' : `Sede ${info.sede}`}${S.repArea !== 'Todas' ? ` · ${S.repArea}` : ''}, comparado con la malla de cada día. ${info.dias.length} días laborales cerrados.</p></div></div>
@@ -982,8 +1041,9 @@ function informesView() {
     ${sel ? `<section class="card detail"><div class="sec-h" style="margin:0"><h3 style="font-size:18px">${sel.p.nombre} · ${nombreMes}</h3><button type="button" class="link" data-sel="0">Cerrar detalle</button></div>
       <div class="hint">${sel.dias} jornadas · ${sel.tardes} llegadas tarde · ${sel.almL} almuerzos largos · ${sel.temp} salidas antes · ${sel.aus} sin marcar · ${sel.just} con permiso</div>
       <div class="days">${sel.detalle.length ? sel.detalle.sort((a, b) => a.d - b.d).map(x => `<span class="chip ${x.cls}">${new Date(info.y, info.m, x.d).toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric' })} · ${x.txt}</span>`).join('') : '<span class="chip ok">Sin novedades en el mes</span>'}</div></section>` : ''}
+    ${lecturaSection(info, nombreMes)}
     <section style="margin-top:28px"><div class="sec-h"><h2>Detalle por persona</h2><span class="hint">Toca una columna para ordenar · toca una fila para ver sus días</span></div>
-      <div class="card tablewrap"><table><thead><tr><th>Persona</th><th class="n">Jornadas</th>${th('tardes', 'Llegadas tarde')}${th('minT', 'Min. tarde')}<th class="n">Promedio</th>${th('almL', 'Almuerzos largos')}${th('temp', 'Salidas antes')}${th('extra', 'Horas extra')}${th('aus', 'Sin marcar')}${th('just', 'Con permiso')}${th('punt', 'Puntualidad')}</tr></thead><tbody>${rows}</tbody></table></div></section>
+      <div class="card tablewrap"><table><thead><tr><th>Persona</th><th class="n">Jornadas</th>${th('tardes', 'Llegadas tarde')}${th('minT', 'Min. tarde')}<th class="n">Promedio</th>${th('almL', 'Almuerzos largos')}${th('temp', 'Salidas antes')}${th('extra', 'Horas extra')}${th('aus', 'Sin marcar')}${th('just', 'Con permiso')}${th('sinConf', 'Comunicados sin confirmar')}${th('punt', 'Puntualidad')}</tr></thead><tbody>${rows}</tbody></table></div></section>
     <p class="hint" style="margin-top:14px">Prototipo: los meses anteriores se simulan con la malla de esta semana. En la versión real salen de las marcas guardadas.</p>`;
 }
 
@@ -1165,6 +1225,8 @@ document.addEventListener('click', e => {
     const items = so.adjuntos.filter(a => a.src); S.lb = { titulo: `${TIPOS[so.tipo].nombre} · ${person(so.pid).nombre}`, items, i: items.indexOf(im) }; render(); return; }
   if (t.dataset.lbclose) { S.lb = null; render(); return; }
   if (t.dataset.lbmove) { const n = S.lb.items.length; S.lb.i = (S.lb.i + +t.dataset.lbmove + n) % n; render(); return; }
+  if (t.dataset.comf) { S.comFiltro = t.dataset.comf; if (!t.dataset.view) { document.querySelectorAll('[data-comf]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.comf === S.comFiltro))); document.getElementById('newsList').innerHTML = newsList(); return; } }
+  if (t.dataset.recordar) { const c = S.comunicados.find(x => x.id === +t.dataset.recordar); const n = destinatarios(c).filter(p => !c.leidos.includes(p.id)).length; toast(`Recordatorio enviado a ${n} ${n === 1 ? 'persona' : 'personas'}: les aparecerá de nuevo en su inicio.`, false); return; }
   if (t.dataset.apquitar) { const a = S.aprobadores.splice(+t.dataset.apquitar, 1)[0]; toast(`${person(a.pid).nombre} ya no revisa solicitudes.`); return; }
   if (t.dataset.apagregar) { const v = +document.getElementById('apNuevo').value; if (!v) { toast('Elige primero a la persona.', false); return; }
     S.aprobadores.push({ pid: v, sede: 'Todas', tipos: [...TODOS_TIPOS], nivel: 'ver' }); toast(`${person(v).nombre} ahora puede ver las solicitudes. Ajusta la sede, los tipos y el permiso.`); return; }
@@ -1179,7 +1241,7 @@ document.addEventListener('click', e => {
   if (t.dataset.sort) { S.repSort = t.dataset.sort; render(); return; }
   if (t.dataset.tool === 'drive') { toast('En la versión real abre el archivo en la carpeta Intranet / Comunicados del Drive.', false); return; }
   if (t.dataset.role) { S.role = t.dataset.role; render(); return; }
-  if (t.dataset.view) { S.view = t.dataset.view; S.hl = null; S.hlPer = null; render(); window.scrollTo(0, 0); return; }
+  if (t.dataset.view) { S.view = t.dataset.view; S.hl = null; S.hlPer = null; if (!t.dataset.comf) S.comFiltro = 'todos'; render(); window.scrollTo(0, 0); return; }
   if (t.id === 'markBtn') {
     const p = me(), m = S.marcas[p.id] = S.marcas[p.id] || {};
     const sig = pasosDe(turnoHoy(p.id)).find(x => m[x.k] == null); if (!sig) return;
@@ -1289,6 +1351,8 @@ if (realMin() < 7 * 60 || realMin() >= 20 * 60) S.horaSim = 10 * 60 + 15;
   ];
 })();
 S.comunicados.forEach(c => {
+  if (typeof c.dia === 'string') { const d = new Date(), f = new Date(d.getFullYear(), d.getMonth() - 1, +c.dia.split('-')[1]); c.iso = isoDe(f.getFullYear(), f.getMonth(), f.getDate()); c.fecha = fechaCorta(c.iso); }
+  else c.iso = isoOff(c.dia);
   if (c.imgs === 'TARIFA') c.imgs = [{ nombre: 'tarifario-riviera-maya.png', src: tablaImg() }];
   if (c.imgs === 'FAM') c.imgs = [
     { nombre: 'famtrip-punta-cana.jpg', src: poster('Famtrip Punta Cana', '14 al 17 de noviembre · 4 cupos', '#3b6ca7', '#00a8a8', 'WAKANDA TRAVEL') },
