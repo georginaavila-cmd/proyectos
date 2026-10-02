@@ -132,7 +132,12 @@ La validación por IP y computador autorizado **se deja para el final**. Todo se
 
 - **Módulo opcional:** la gerente lo activa o lo apaga desde Solicitudes. Apagado, el equipo no ve la opción; lo aprobado se conserva.
 - El funcionario elige el tipo (vacaciones, permiso o incapacidad), las fechas, horas opcionales en un permiso parcial, un motivo y, si quiere, un soporte (foto o PDF). **El soporte no es obligatorio.**
-- Aprueban o rechazan, con comentario opcional: la directora de operaciones de la sede del funcionario o la gerente. Las solicitudes de las directoras las aprueba la gerente. Nadie aprueba las suyas.
+- **La gerente decide quién revisa.** En "¿Quién revisa las solicitudes?" da acceso a cualquier persona (por ejemplo, la funcionaria de contabilidad) y elige para cada una:
+  - **Sede:** Bogotá, Santo Domingo o las dos.
+  - **Tipos:** vacaciones, permisos o incapacidades (uno o varios).
+  - **Permiso:** "Ver, aprobar y rechazar" o "Solo ver".
+- La gerente siempre puede ver, aprobar y rechazar todo. Nadie aprueba sus propias solicitudes.
+- El acceso a solicitudes es independiente del rol: dar acceso a contabilidad no le da acceso a la malla, la asistencia ni los informes.
 - Lo aprobado por días completos aparece en la asistencia del día y en los informes como **Vacaciones**, **Ausencia con permiso** o **Incapacidad**, y no cuenta como falta ni como llegada tarde. Si es hoy, el pase de jornada de la persona lo indica.
 - Los soportes se guardan junto a las imágenes de comunicados (Drive de la cuenta dueña, carpeta Intranet / Solicitudes) y solo los ven la persona, su aprobadora y la gerente.
 - **PENDIENTE:** si los permisos por horas deben descontarse de la jornada en los informes.

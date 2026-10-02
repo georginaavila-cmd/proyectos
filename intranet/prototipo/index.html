@@ -276,6 +276,13 @@ tr.clickable:hover td { background: var(--blue-050); }
 .away { display: flex; gap: 14px; align-items: flex-start; }
 .away .sq { width: 52px; height: 52px; }
 
+.perm td { vertical-align: middle; }
+.perm select { padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; font-size: 14px; }
+.perm .chk { display: flex; gap: 12px; flex-wrap: wrap; }
+.perm .chk label { display: inline-flex; gap: 6px; align-items: center; font-size: 14px; white-space: nowrap; }
+.addrow { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; padding: 14px 16px; border-top: 1px solid var(--line); }
+.addrow select { padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; min-width: 220px; }
+
 /* Reporte */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
 .kpi { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -408,10 +415,16 @@ const ROLES = {
   colaborador: { persona: 1, rol: 'Colaboradora', puedeEditar: () => false },
   dirCO: { persona: 4, rol: 'Directora de Operaciones Colombia', corto: 'Dir. Operaciones CO', sede: 'Bogotá', puedeEditar: p => p.sede === 'Bogotá' },
   dirRD: { persona: 10, rol: 'Directora de Operaciones RD', corto: 'Dir. Operaciones RD', sede: 'Santo Domingo', puedeEditar: p => p.sede === 'Santo Domingo' },
+  conta: { persona: 7, rol: 'Contabilidad', puedeEditar: () => false },
   gerencia: { persona: 8, rol: 'Gerente', puedeEditar: () => true }
 };
 const S = {
-  logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', modSol: true, solDraft: [], solTipo: 'vacaciones', solies: null, role: 'colaborador', view: 'inicio', filtroArea: 'Todas', filtroSede: 'Todas',
+  logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', modSol: true, aprobadores: [
+    { pid: 4, sede: 'Bogotá', tipos: ['vacaciones', 'permiso', 'incapacidad'], nivel: 'aprobar' },
+    { pid: 10, sede: 'Santo Domingo', tipos: ['vacaciones', 'permiso', 'incapacidad'], nivel: 'aprobar' },
+    { pid: 7, sede: 'Todas', tipos: ['incapacidad'], nivel: 'aprobar' },
+    { pid: 5, sede: 'Todas', tipos: ['vacaciones'], nivel: 'ver' }
+  ], nuevoAprob: '', solDraft: [], solTipo: 'vacaciones', solies: null, role: 'colaborador', view: 'inicio', filtroArea: 'Todas', filtroSede: 'Todas',
   malla: {
     1: ['M', 'M', 'T', 'M', 'M', 'D'], 2: ['M', 'M', 'M', 'M', 'M', 'S'], 3: ['T', 'T', 'M', 'M', 'T', 'D'],
     4: ['M', 'T', 'M', 'T', 'M', 'S'], 5: ['M', 'M', 'M', 'M', 'M', 'D'], 6: ['T', 'M', 'T', 'M', 'T', 'S'],
@@ -455,6 +468,7 @@ const todayIdx = () => { const g = new Date().getDay(); return g === 0 ? -1 : g 
 const initials = n => n.split(' ').map(w => w[0]).slice(0, 2).join('');
 const person = id => PEOPLE.find(p => p.id === id);
 const me = () => person(ROLES[S.role].persona);
+const esLider = () => ['dirCO', 'dirRD', 'gerencia'].includes(S.role);
 const turnoHoy = id => { const i = todayIdx(); return i < 0 ? 'D' : S.malla[id][i]; };
 
 const PASOS = [
@@ -517,7 +531,7 @@ function protoBar() {
     <span><b>Prototipo</b> · personas y datos de ejemplo · validación de IP apagada</span>
     <span style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><label for="hSim">Hora</label>
       <input type="time" id="hSim" value="${fmt(nowMin())}"> Ver como
-      <span class="seg">${b('colaborador', 'Colaborador')}${b('dirCO', 'Dir. Op. Colombia')}${b('dirRD', 'Dir. Op. RD')}${b('gerencia', 'Gerente')}</span></span>
+      <span class="seg">${b('colaborador', 'Colaborador')}${b('dirCO', 'Dir. Op. Colombia')}${b('dirRD', 'Dir. Op. RD')}${b('conta', 'Contabilidad')}${b('gerencia', 'Gerente')}</span></span>
   </div></div>`;
 }
 
@@ -547,11 +561,11 @@ function loginView() {
 function appShell() {
   const p = me(), r = ROLES[S.role];
   const tabs = [['inicio', 'Inicio'], ['malla', 'Malla'], ['comunicados', 'Comunicados']];
-  if (S.role !== 'colaborador') tabs.push(['asistencia', 'Asistencia'], ['informes', 'Informes']);
+  if (esLider()) tabs.push(['asistencia', 'Asistencia'], ['informes', 'Informes']);
   if (S.modSol || S.role === 'gerencia') tabs.push(['solicitudes', 'Solicitudes']);
   if (!tabs.find(t => t[0] === S.view)) S.view = 'inicio';
   const views = { inicio: inicioView, malla: mallaView, comunicados: comunicadosView, asistencia: asistenciaView, informes: informesView, solicitudes: solicitudesView };
-  const pend = S.role === 'colaborador' ? 0 : porAprobar().length;
+  const pend = porAprobar().length;
   return `<header class="top"><div class="wrap">
       <div class="brand"><img src="${LOGO}" alt=""><span>Wakanda Travel</span></div>
       <nav class="tabs" aria-label="Secciones">${tabs.map(([k, l]) =>
@@ -692,7 +706,7 @@ const personCell = p => `<div class="person"><div class="avatar soft">${initials
 
 function mallaView() {
   const r = ROLES[S.role], hoy = todayIdx();
-  const editHint = S.role === 'colaborador' ? 'La malla es pública: todo el equipo la ve. Solo la directora de operaciones de cada sede y la gerente pueden cambiarla.'
+  const editHint = !esLider() ? 'La malla es pública: todo el equipo la ve. Solo la directora de operaciones de cada sede y la gerente pueden cambiarla.'
     : r.sede ? `Puedes cambiar los turnos de la sede ${r.sede}. Cada cambio recalcula la asistencia al instante.`
     : 'Puedes cambiar los turnos de las dos sedes. Cada cambio recalcula la asistencia al instante.';
   const rows = filtrados().map(p => {
@@ -705,7 +719,7 @@ function mallaView() {
   return `<div class="hello"><div><div class="eyebrow">Intranet · semana actual</div><h1>Malla de <em>horarios</em></h1><p>${editHint}</p></div></div>
     <div class="toolbar"><div class="legend">${Object.entries(TURNOS).map(([k, t]) => `<span class="chip t-${k}">${t.nombre}${t.ini ? ` · ${t.ini}–${t.fin}` : ''}</span>`).join('')}</div>${filtros()}</div>
     <div class="card tablewrap"><table><thead><tr><th>Persona</th>${DIAS.map((d, i) => `<th class="${i === hoy ? 'today' : ''}">${d}${i === hoy ? ' · hoy' : ''}</th>`).join('')}</tr></thead><tbody>${rows}</tbody></table></div>
-    ${S.role !== 'colaborador' ? turnosEditor() : ''}
+    ${esLider() ? turnosEditor() : ''}
     <section style="margin-top:32px"><div class="sec-h"><h2>Historial de cambios</h2></div>
       <div class="card log">${S.historial.slice().reverse().map(h => `<div><time>${h.t}</time><span><b>${h.quien}</b> cambió ${h.txt}</span></div>`).join('')}</div></section>`;
 }
@@ -727,7 +741,7 @@ function turnosEditor() {
 }
 
 function comunicadosView() {
-  const puede = S.role !== 'colaborador';
+  const puede = esLider();
   const compose = puede ? `<section><div class="sec-h"><h2>Nuevo comunicado</h2></div>
     <form class="card compose" id="compose">
       <div class="field"><label for="cTit">Título</label><input id="cTit" placeholder="Ej.: Cierre de mes de facturación"></div>
@@ -972,11 +986,16 @@ const fechaCorta = iso => { const [y, m, d] = iso.split('-').map(Number); return
 function diasHabiles(a, b) { let n = 0; const [y1, m1, d1] = a.split('-').map(Number), [y2, m2, d2] = b.split('-').map(Number); for (let f = new Date(y1, m1 - 1, d1), e = new Date(y2, m2 - 1, d2); f <= e; f.setDate(f.getDate() + 1)) if (f.getDay() !== 0) n++; return n; }
 const completa = so => !so.hDesde;
 function aprobada(pid, iso) { return S.solicitudes.find(so => so.pid === pid && so.estado === 'aprobada' && completa(so) && so.desde <= iso && iso <= so.hasta); }
-function puedeAprobar(so) {
-  const r = ROLES[S.role], quien = person(so.pid);
-  if (S.role === 'colaborador' || so.pid === me().id) return false;
-  return S.role === 'gerencia' || quien.sede === r.sede;
+const TODOS_TIPOS = ['vacaciones', 'permiso', 'incapacidad'];
+function miAcceso() {
+  if (S.role === 'gerencia') return { sede: 'Todas', tipos: TODOS_TIPOS, nivel: 'aprobar' };
+  return S.aprobadores.find(a => a.pid === me().id) || null;
 }
+function puedeVer(so) {
+  const a = miAcceso(); if (!a || so.pid === me().id) return false;
+  return (a.sede === 'Todas' || person(so.pid).sede === a.sede) && a.tipos.includes(so.tipo);
+}
+const puedeAprobar = so => puedeVer(so) && miAcceso().nivel === 'aprobar';
 const porAprobar = () => S.solicitudes.filter(so => so.estado === 'pendiente' && puedeAprobar(so));
 function docImg(titulo, linea) {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200"><rect width="900" height="1200" fill="#fdfdfb"/><rect x="0" y="0" width="900" height="120" fill="#e8eef6"/>
@@ -999,8 +1018,8 @@ function solCard(so, conAcciones) {
       : `<button type="button" class="file" data-lbs="${so.id}:${i}">${ico('file')} ${esc(a.nombre)}</button>`).join('')}</div>` : '';
   return `<article class="card sol" id="sol-${so.id}">
     <div class="sol-h"><div style="display:flex;gap:12px;align-items:center"><span class="sq">${ico(T.i)}</span><div>
-      <h3>${T.nombre}${conAcciones || S.role !== 'colaborador' ? ` · ${esc(p.nombre)}` : ''}</h3>
-      <div class="meta">${rango} · ${dur}${conAcciones || S.role !== 'colaborador' ? ` · ${esc(p.area)} · ${esc(p.sede)}` : ''}</div></div></div>
+      <h3>${T.nombre}${so.pid !== me().id ? ` · ${esc(p.nombre)}` : ''}</h3>
+      <div class="meta">${rango} · ${dur}${so.pid !== me().id ? ` · ${esc(p.area)} · ${esc(p.sede)}` : ''}</div></div></div>
       <span class="chip ${cls}">${est}</span></div>
     ${so.motivo ? `<p>${esc(so.motivo)}</p>` : ''}${adj}
     ${so.estado !== 'pendiente' ? `<div class="meta">${est} por ${esc(so.por)}${so.comentario ? ` · "${esc(so.comentario)}"` : ''}</div>` : `<div class="meta">Enviada ${esc(so.creada)}${so.adjuntos.length ? '' : ' · sin soporte adjunto'}</div>`}
@@ -1038,30 +1057,45 @@ function solThumbs() {
     ? `<span class="thumb sm"><img src="${a.src}" alt="${esc(a.nombre)}"><button type="button" class="x" data-squitar="${i}" aria-label="Quitar ${esc(a.nombre)}">×</button></span>`
     : `<span class="file">${ico('file')} ${esc(a.nombre)} <button type="button" class="link" data-squitar="${i}" aria-label="Quitar ${esc(a.nombre)}">×</button></span>`).join('');
 }
+function permisosView() {
+  const libres = PEOPLE.filter(p => p.id !== ROLES.gerencia.persona && !S.aprobadores.some(a => a.pid === p.id));
+  const rows = S.aprobadores.map((a, i) => { const p = person(a.pid);
+    return `<tr><td>${personCell(p)}</td>
+      <td><select data-ap="${i}" data-f="sede" aria-label="Sede que revisa ${esc(p.nombre)}">${['Todas', 'Bogotá', 'Santo Domingo'].map(x => `<option value="${x}" ${x === a.sede ? 'selected' : ''}>${x === 'Todas' ? 'Las dos sedes' : x}</option>`).join('')}</select></td>
+      <td><div class="chk">${TODOS_TIPOS.map(t => `<label><input type="checkbox" data-ap="${i}" data-tipo="${t}" ${a.tipos.includes(t) ? 'checked' : ''}> ${TIPOS[t].nombre}</label>`).join('')}</div></td>
+      <td><select data-ap="${i}" data-f="nivel" aria-label="Permiso de ${esc(p.nombre)}"><option value="aprobar" ${a.nivel === 'aprobar' ? 'selected' : ''}>Ver, aprobar y rechazar</option><option value="ver" ${a.nivel === 'ver' ? 'selected' : ''}>Solo ver</option></select></td>
+      <td><button type="button" class="btn sm danger" data-apquitar="${i}">Quitar</button></td></tr>`; }).join('');
+  return `<section style="margin-bottom:28px"><div class="sec-h"><h2>¿Quién revisa las solicitudes?</h2><span class="hint">Solo la gerente cambia estos permisos</span></div>
+    <div class="card"><div class="tablewrap"><table class="perm"><thead><tr><th>Persona</th><th>Sede</th><th>Tipos de solicitud</th><th>Permiso</th><th></th></tr></thead>
+      <tbody><tr><td>${personCell(person(ROLES.gerencia.persona))}</td><td>Las dos sedes</td><td>Todas</td><td>Ver, aprobar y rechazar</td><td><span class="hint">Siempre</span></td></tr>${rows}</tbody></table></div>
+      <div class="addrow"><label for="apNuevo" class="hint">Dar acceso a</label><select id="apNuevo"><option value="">Elige una persona…</option>${libres.map(p => `<option value="${p.id}">${p.nombre} · ${p.area}</option>`).join('')}</select>
+        <button type="button" class="btn sm" data-apagregar="1">${ico('plus')} Dar acceso</button></div></div></section>`;
+}
 function solicitudesView() {
-  const esGer = S.role === 'gerencia', aprob = S.role !== 'colaborador';
+  const esGer = S.role === 'gerencia', acc = miAcceso();
   const modulo = esGer ? `<div class="card modcard"><div><b style="color:var(--navy);font-family:var(--f-display);font-size:17px">Módulo de solicitudes</b>
       <p>${S.modSol ? 'Activo: el equipo ve "Solicitudes" en su menú y en su inicio, y puede pedir vacaciones, permisos e incapacidades.' : 'Apagado: el equipo no ve la opción de solicitudes. Lo ya aprobado se conserva.'}</p></div>
       <label class="switch"><input type="checkbox" id="modSol" ${S.modSol ? 'checked' : ''}><span class="tr"></span>${S.modSol ? 'Activo' : 'Apagado'}</label></div>` : '';
-  const head = `<div class="hello"><div><div class="eyebrow">Intranet · solicitudes</div><h1>${aprob ? 'Vacaciones, permisos e <em>incapacidades</em>' : '¿Necesitas un <em>permiso?</em>'}</h1>
-    <p>${aprob ? (esGer ? 'Apruebas las solicitudes de las dos sedes y las de las directoras.' : `Apruebas las solicitudes de la sede ${ROLES[S.role].sede}. Las tuyas las aprueba la gerente.`) : 'Pide vacaciones o un permiso, o sube tu incapacidad. Tu líder o la gerente la revisan y te avisamos aquí.'}</p></div></div>`;
+  const lista = ts => { const n = ts.map(t => ({ vacaciones: 'vacaciones', permiso: 'permisos', incapacidad: 'incapacidades' }[t])); const u = n.pop(); return n.length ? `${n.join(', ')} ${/^i/.test(u) ? 'e' : 'y'} ${u}` : u; };
+  const alcance = a => `${lista(a.tipos)} de ${a.sede === 'Todas' ? 'las dos sedes' : `la sede ${a.sede}`}`;
+  const sub = esGer ? 'Tú decides quién revisa cada tipo de solicitud. Tú siempre puedes ver, aprobar y rechazar todas.'
+    : acc ? `La gerente te dio acceso para ${acc.nivel === 'aprobar' ? 'ver, aprobar y rechazar' : 'ver'} ${alcance(acc)}. Tus propias solicitudes las revisa otra persona.`
+    : 'Pide vacaciones o un permiso, o sube tu incapacidad. Te avisamos aquí cuando la revisen.';
+  const head = `<div class="hello"><div><div class="eyebrow">Intranet · solicitudes</div><h1>${acc ? 'Vacaciones, permisos e <em>incapacidades</em>' : '¿Necesitas un <em>permiso?</em>'}</h1><p>${sub}</p></div></div>`;
   if (!S.modSol && !esGer) return head + `<div class="card" style="padding:20px;color:var(--ink-2)">La gerencia aún no ha activado las solicitudes.</div>`;
-  if (!aprob) {
-    const mias = S.solicitudes.filter(so => so.pid === me().id);
-    return head + `<div class="grid-home"><div class="col">${solForm()}</div><div class="col"><section><div class="sec-h"><h2>Mis solicitudes</h2></div>
-      <div class="news">${mias.length ? mias.map(so => solCard(so, false)).join('') : '<div class="card" style="padding:16px 18px;color:var(--ink-2)">Todavía no has enviado solicitudes.</div>'}</div></section></div></div>`;
-  }
-  const pend = porAprobar();
-  const visibles = S.solicitudes.filter(so => so.estado !== 'pendiente' && (esGer || person(so.pid).sede === ROLES[S.role].sede));
   const mias = S.solicitudes.filter(so => so.pid === me().id);
-  return head + modulo + `<div class="grid-home"><div class="col">
-      <section><div class="sec-h"><h2>Por aprobar <span class="hint num">(${pend.length})</span></h2></div>
-        <div class="news">${pend.length ? pend.map(so => solCard(so, true)).join('') : '<div class="card" style="padding:16px 18px;color:var(--ink-2)">No hay solicitudes pendientes.</div>'}</div></section>
-      <section><div class="sec-h"><h2>Historial</h2></div><div class="news">${visibles.map(so => solCard(so, false)).join('') || '<p class="hint">Sin historial todavía.</p>'}</div></section></div>
+  const misSol = `<section><div class="sec-h"><h2>Mis solicitudes</h2></div><div class="news">${mias.length ? mias.map(so => solCard(so, false)).join('') : '<div class="card" style="padding:16px 18px;color:var(--ink-2);font-size:14px">Todavía no has enviado solicitudes.</div>'}</div></section>`;
+  if (!acc) return head + `<div class="grid-home"><div class="col">${solForm()}</div><div class="col">${misSol}</div></div>`;
+  const pend = S.solicitudes.filter(so => so.estado === 'pendiente' && puedeVer(so));
+  const hist = S.solicitudes.filter(so => so.estado !== 'pendiente' && puedeVer(so));
+  return head + modulo + (esGer ? permisosView() : '') + `<div class="grid-home"><div class="col">
+      <section><div class="sec-h"><h2>${acc.nivel === 'aprobar' ? 'Por aprobar' : 'Pendientes'} <span class="hint num">(${pend.length})</span></h2></div>
+        <div class="news">${pend.length ? pend.map(so => solCard(so, puedeAprobar(so))).join('') : '<div class="card" style="padding:16px 18px;color:var(--ink-2)">No hay solicitudes pendientes.</div>'}</div></section>
+      <section><div class="sec-h"><h2>Historial</h2></div><div class="news">${hist.map(so => solCard(so, false)).join('') || '<p class="hint">Sin historial todavía.</p>'}</div></section></div>
     <div class="col">${esGer ? `<section><div class="sec-h"><h2>Cómo funciona</h2></div><div class="card" style="padding:18px 20px;color:var(--ink-2);font-size:14px;display:grid;gap:8px">
       <div>1. El funcionario envía la solicitud. El soporte (foto o documento) es opcional.</div>
-      <div>2. La directora de su sede o la gerente la aprueba o la rechaza, con un comentario si quiere.</div>
-      <div>3. Lo aprobado aparece en la asistencia y en los informes como <b>ausencia con permiso</b>, <b>vacaciones</b> o <b>incapacidad</b>, y no cuenta como falta.</div></div></section>` : `<section><div class="sec-h"><h2>Mis solicitudes</h2></div><div class="news">${mias.map(so => solCard(so, false)).join('') || '<div class="card" style="padding:16px 18px;color:var(--ink-2);font-size:14px">Las tuyas las aprueba la gerente.</div>'}</div></section>${solForm()}`}</div></div>`;
+      <div>2. La revisa quien tenga acceso para ese tipo y esa sede, o tú. Puede aprobarla o rechazarla con un comentario.</div>
+      <div>3. Lo aprobado aparece en la asistencia y en los informes como <b>ausencia con permiso</b>, <b>vacaciones</b> o <b>incapacidad</b>, y no cuenta como falta.</div></div></section>` : misSol + solForm()}</div></div>`;
 }
 
 /* ── Eventos ── */
@@ -1116,6 +1150,9 @@ document.addEventListener('click', e => {
     const items = so.adjuntos.filter(a => a.src); S.lb = { titulo: `${TIPOS[so.tipo].nombre} · ${person(so.pid).nombre}`, items, i: items.indexOf(im) }; render(); return; }
   if (t.dataset.lbclose) { S.lb = null; render(); return; }
   if (t.dataset.lbmove) { const n = S.lb.items.length; S.lb.i = (S.lb.i + +t.dataset.lbmove + n) % n; render(); return; }
+  if (t.dataset.apquitar) { const a = S.aprobadores.splice(+t.dataset.apquitar, 1)[0]; toast(`${person(a.pid).nombre} ya no revisa solicitudes.`); return; }
+  if (t.dataset.apagregar) { const v = +document.getElementById('apNuevo').value; if (!v) { toast('Elige primero a la persona.', false); return; }
+    S.aprobadores.push({ pid: v, sede: 'Todas', tipos: [...TODOS_TIPOS], nivel: 'ver' }); toast(`${person(v).nombre} ahora puede ver las solicitudes. Ajusta la sede, los tipos y el permiso.`); return; }
   if (t.dataset.squitar) { S.solDraft.splice(+t.dataset.squitar, 1); document.getElementById('solThumbs').innerHTML = solThumbs(); return; }
   if (t.dataset.aprobar || t.dataset.rechazar) {
     const id = +(t.dataset.aprobar || t.dataset.rechazar), so = S.solicitudes.find(x => x.id === id);
@@ -1147,6 +1184,15 @@ document.addEventListener('change', e => {
   if (el.id === 'rMes') { S.mes = el.value; S.repSel = null; render(); return; }
   if (el.id === 'rSede') { S.repSede = el.value; S.repSel = null; render(); return; }
   if (el.id === 'rArea') { S.repArea = el.value; S.repSel = null; render(); return; }
+  if (el.dataset.ap !== undefined) {
+    const a = S.aprobadores[+el.dataset.ap];
+    if (el.dataset.tipo) {
+      if (el.checked) a.tipos.push(el.dataset.tipo); else a.tipos = a.tipos.filter(x => x !== el.dataset.tipo);
+      if (!a.tipos.length) { a.tipos.push(el.dataset.tipo); toast('Cada persona debe revisar al menos un tipo de solicitud. Si no, quítale el acceso.'); return; }
+      a.tipos.sort((x, y) => TODOS_TIPOS.indexOf(x) - TODOS_TIPOS.indexOf(y));
+    } else a[el.dataset.f] = el.value;
+    toast(`Permisos de ${person(a.pid).nombre} actualizados.`); return;
+  }
   if (el.id === 'modSol') { S.modSol = el.checked; toast(S.modSol ? 'Solicitudes activadas para todo el equipo.' : 'Solicitudes apagadas. El equipo ya no ve la opción.'); return; }
   if (el.name === 'sTipo') { S.solTipo = el.value; S.solDraft = []; render(); return; }
   if (el.id === 'sFile') {
