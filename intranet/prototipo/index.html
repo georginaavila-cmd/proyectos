@@ -40,9 +40,9 @@ button { cursor: pointer; }
 
 /* Barra superior */
 .top { background: #fff; border-bottom: 3px solid var(--teal); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; }
-.top .wrap { display: flex; align-items: center; gap: 20px; min-height: 92px; flex-wrap: wrap; }
+.top .wrap { display: flex; align-items: center; gap: 16px; min-height: 92px; flex-wrap: wrap; }
 .brand { display: flex; align-items: center; gap: 10px; }
-.brand img { width: 76px; height: 76px; object-fit: contain; }
+.brand img { width: 70px; height: 70px; object-fit: contain; }
 .brand span { font-family: var(--f-display); font-weight: 900; font-size: 22px; color: var(--navy); white-space: nowrap; }
 .tabs { display: flex; gap: 4px; flex: 1; overflow-x: auto; padding-block: 4px; }
 .tabs button { border: 0; background: none; padding: 8px 12px; border-radius: 999px; color: var(--ink-2); font-weight: 500; white-space: nowrap; font-size: 15px; }
@@ -169,7 +169,7 @@ select.shift:hover { box-shadow: inset 0 0 0 2px var(--blue-200); }
 .turnos .tname { width: 140px; font-weight: 600; color: var(--navy); }
 
 /* Buscador */
-.search { position: relative; flex: 0 1 230px; min-width: 170px; }
+.search { position: relative; flex: 0 1 210px; min-width: 150px; }
 .search input { width: 100%; padding: 9px 12px 9px 36px; border: 1px solid var(--line); border-radius: 999px; background: var(--blue-050); font-size: 14px; }
 .search input:focus { outline: none; border-color: var(--teal); background: #fff; box-shadow: 0 0 0 3px rgba(0,168,168,.2); }
 .search > .ico { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--ink-3); pointer-events: none; }
@@ -245,6 +245,37 @@ th.n { text-align: right; }
 tr.clickable { cursor: pointer; }
 tr.clickable:hover td { background: var(--blue-050); }
 
+/* Solicitudes */
+.switch { display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 600; color: var(--navy); }
+.switch input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.switch .tr { width: 44px; height: 24px; border-radius: 999px; background: var(--blue-200); position: relative; transition: background .15s; flex: none; }
+.switch .tr::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .15s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.switch input:checked + .tr { background: var(--teal); }
+.switch input:checked + .tr::after { transform: translateX(20px); }
+.switch input:focus-visible + .tr { box-shadow: 0 0 0 3px rgba(0,168,168,.35); }
+.modcard { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-bottom: 24px; }
+.modcard p { margin: 2px 0 0; font-size: 14px; color: var(--ink-2); max-width: 70ch; }
+.tipos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.tipos label { border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 4px; cursor: pointer; background: #fff; font-size: 13px; color: var(--ink-2); }
+.tipos label b { color: var(--navy); font-family: var(--f-display); font-size: 15px; }
+.tipos input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.tipos label:has(input:checked) { border-color: var(--teal); background: var(--teal-050); box-shadow: 0 0 0 1px var(--teal); }
+.tipos label:has(input:focus-visible) { box-shadow: 0 0 0 3px rgba(0,168,168,.35); }
+.sol { padding: 16px 18px; display: grid; gap: 8px; }
+.sol-h { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+.sol h3 { font-size: 16px; }
+.sol .meta { font-size: 13px; color: var(--ink-3); }
+.sol p { margin: 0; font-size: 14px; color: var(--ink-2); }
+.sol .acts { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.sol .acts input { flex: 1; min-width: 160px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; font-size: 14px; }
+.btn.danger { background: #fff; color: var(--bad); border: 1px solid #f3c5c0; }
+.btn.danger:hover { background: var(--bad-bg); }
+.file { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; font-size: 13px; background: #fff; color: var(--navy); }
+.file .ico { width: 16px; height: 16px; color: var(--bad); }
+.tabs .badge { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; border-radius: 999px; background: var(--pink); color: var(--navy); font-size: 12px; font-weight: 700; margin-left: 6px; }
+.away { display: flex; gap: 14px; align-items: flex-start; }
+.away .sq { width: 52px; height: 52px; }
+
 /* Reporte */
 .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; margin-bottom: 24px; }
 .kpi { padding: 16px 18px; display: flex; gap: 14px; align-items: center; }
@@ -296,6 +327,7 @@ tr.clickable:hover td { background: var(--blue-050); }
   .tag { display: none; }
 }
 @media (max-width: 640px) {
+  .tipos { grid-template-columns: 1fr; }
   .pass { grid-template-columns: 1fr; }
   .stub { border-right: 0; border-bottom: 2px dashed var(--blue-200); }
   .pass-body { padding: 20px 14px; }
@@ -336,6 +368,10 @@ const IC = {
   x: '<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
   moon: '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
   clock: '<path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/>',
+  plane: '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+  heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+  inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+  clip: '<path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/>',
   search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
   image: '<rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
   user: '<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>',
@@ -375,7 +411,7 @@ const ROLES = {
   gerencia: { persona: 8, rol: 'Gerente', puedeEditar: () => true }
 };
 const S = {
-  logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', role: 'colaborador', view: 'inicio', filtroArea: 'Todas', filtroSede: 'Todas',
+  logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', modSol: true, solDraft: [], solTipo: 'vacaciones', solies: null, role: 'colaborador', view: 'inicio', filtroArea: 'Todas', filtroSede: 'Todas',
   malla: {
     1: ['M', 'M', 'T', 'M', 'M', 'D'], 2: ['M', 'M', 'M', 'M', 'M', 'S'], 3: ['T', 'T', 'M', 'M', 'T', 'D'],
     4: ['M', 'T', 'M', 'T', 'M', 'S'], 5: ['M', 'M', 'M', 'M', 'M', 'D'], 6: ['T', 'M', 'T', 'M', 'T', 'S'],
@@ -390,7 +426,7 @@ const S = {
     2: { entrada: '07:56', salidaAlm: '12:31', regresoAlm: '13:28', salida: '17:36' },
     3: { entrada: '08:14', salidaAlm: '12:35', regresoAlm: '13:52', salida: '17:31' },
     4: { entrada: '09:58', salidaAlm: '14:02', regresoAlm: '15:01' },
-    5: { entrada: '07:49', salidaAlm: '12:30', regresoAlm: '13:30', salida: '17:12' },
+    5: {},
     6: { entrada: '09:57', salidaAlm: '14:00', regresoAlm: '14:58', salida: '19:40' },
     8: { entrada: '07:40', salidaAlm: '12:45', regresoAlm: '13:40', salida: '18:05' },
     9: { entrada: '08:03', salidaAlm: '12:30', regresoAlm: '13:31', salida: '17:30' },
@@ -453,6 +489,8 @@ function marcasDe(id) {
 function estadoDia(id) {
   const t = turnoHoy(id), tu = TURNOS[t];
   if (!tu.ini) return { cls: 'mute', txt: tu.nombre };
+  const ap = aprobada(id, isoHoy());
+  if (ap) return { cls: 'info', txt: TIPOS[ap.tipo].estado };
   const m = marcasDe(id), n = nowMin();
   if (m.entrada == null) {
     if (n < toMin(tu.ini)) return { cls: 'mute', txt: 'Aún no inicia' };
@@ -508,14 +546,16 @@ function loginView() {
 
 function appShell() {
   const p = me(), r = ROLES[S.role];
-  const tabs = [['inicio', 'Inicio'], ['malla', 'Malla de horarios'], ['comunicados', 'Comunicados']];
+  const tabs = [['inicio', 'Inicio'], ['malla', 'Malla'], ['comunicados', 'Comunicados']];
   if (S.role !== 'colaborador') tabs.push(['asistencia', 'Asistencia'], ['informes', 'Informes']);
+  if (S.modSol || S.role === 'gerencia') tabs.push(['solicitudes', 'Solicitudes']);
   if (!tabs.find(t => t[0] === S.view)) S.view = 'inicio';
-  const views = { inicio: inicioView, malla: mallaView, comunicados: comunicadosView, asistencia: asistenciaView, informes: informesView };
+  const views = { inicio: inicioView, malla: mallaView, comunicados: comunicadosView, asistencia: asistenciaView, informes: informesView, solicitudes: solicitudesView };
+  const pend = S.role === 'colaborador' ? 0 : porAprobar().length;
   return `<header class="top"><div class="wrap">
       <div class="brand"><img src="${LOGO}" alt=""><span>Wakanda Travel</span></div>
       <nav class="tabs" aria-label="Secciones">${tabs.map(([k, l]) =>
-        `<button type="button" data-view="${k}" ${S.view === k ? 'aria-current="page"' : ''}>${l}</button>`).join('')}</nav>
+        `<button type="button" data-view="${k}" ${S.view === k ? 'aria-current="page"' : ''}>${l}${k === 'solicitudes' && pend && S.modSol ? `<span class="badge" aria-label="${pend} por aprobar">${pend}</span>` : ''}</button>`).join('')}</nav>
       <div class="search" role="search">${ico('search')}<input id="q" type="search" placeholder="Buscar comunicados, personas, herramientas" aria-label="Buscar en la intranet" autocomplete="off" value="${esc(S.q)}"><div class="qres" id="qres" hidden></div></div>
       <div class="me"><div class="me-txt"><b>${p.nombre}</b><br><span>${r.rol} · ${p.sede}</span></div><div class="avatar" title="${p.nombre} · ${r.rol} · ${p.sede}">${initials(p.nombre)}</div></div>
     </div></header>
@@ -536,7 +576,7 @@ function inicioView() {
     <div class="grid-home">
       <div class="col">${passView()}
         <section><div class="sec-h"><h2>Herramientas</h2><span class="hint">Se abren en una pestaña nueva</span></div>${toolsView()}</section></div>
-      <div class="col">${newsSection(true)}${weekSection()}</div>
+      <div class="col">${newsSection(true)}${S.modSol ? misSolicitudesMini() : ''}${weekSection()}</div>
     </div>`;
 }
 
@@ -551,6 +591,15 @@ function passView() {
         <dt>Fecha</dt><dd class="num">${d.toLocaleDateString('es-CO', { day: '2-digit', month: 'short', year: 'numeric' })}</dd></dl>
       <div class="clock num" id="clock">${hh}:${mm}<small>:${String(d.getSeconds()).padStart(2, '0')}</small></div>
     </div>`;
+  const ap = tu.ini && aprobada(p.id, isoHoy());
+  if (ap) {
+    return `<section class="card pass" aria-label="Pase de jornada">${stub}<div class="pass-body">
+      <div class="away"><span class="sq">${ico(TIPOS[ap.tipo].i)}</span><div>
+        <span class="chip info">${TIPOS[ap.tipo].estado}</span>
+        <h2 style="font-size:24px;margin-top:8px">Hoy no tienes que <em>marcar</em></h2>
+        <p style="margin:6px 0 0;color:var(--ink-2)">${TIPOS[ap.tipo].nombre} del ${fechaCorta(ap.desde)} al ${fechaCorta(ap.hasta)}, aprobada por ${esc(ap.por)}. Tu jornada queda registrada como ${TIPOS[ap.tipo].estado.toLowerCase()}.</p></div></div>
+    </div></section>`;
+  }
   if (!tu.ini) {
     return `<section class="card pass" aria-label="Pase de jornada">${stub}<div class="pass-body">
       <div><span class="chip mute">${tu.nombre}</span></div>
@@ -773,10 +822,9 @@ function draftThumbs() {
 }
 function lightboxView() {
   if (!S.lb) return '';
-  const c = S.comunicados.find(x => x.id === S.lb.cid); if (!c) return '';
-  const im = c.imgs[S.lb.i], n = c.imgs.length;
-  return `<div class="lightbox" role="dialog" aria-modal="true" aria-label="Imagen del comunicado">
-    <div class="lb-top"><div><b>${esc(c.titulo)}</b><div style="font-size:13px;opacity:.8">${esc(im.nombre)} · ${S.lb.i + 1} de ${n}</div></div>
+  const im = S.lb.items[S.lb.i], n = S.lb.items.length;
+  return `<div class="lightbox" role="dialog" aria-modal="true" aria-label="Imagen">
+    <div class="lb-top"><div><b>${esc(S.lb.titulo)}</b><div style="font-size:13px;opacity:.8">${esc(im.nombre)} · ${S.lb.i + 1} de ${n}</div></div>
       <button type="button" class="btn ghost sm" data-lbclose="1">Cerrar</button></div>
     <div class="lb-img"><img src="${im.src}" alt="${esc(im.nombre)}"></div>
     <div class="lb-nav">${n > 1 ? `<button type="button" class="btn ghost sm" data-lbmove="-1">Anterior</button><button type="button" class="btn ghost sm" data-lbmove="1">Siguiente</button>` : ''}
@@ -818,11 +866,13 @@ function informe() {
   const gente = PEOPLE.filter(p => (sede === 'Todas' || p.sede === sede) && (S.repArea === 'Todas' || p.area === S.repArea));
   const ids = new Set(gente.map(p => p.id));
   const { regs, dias } = registrosMes(y, m);
-  const st = Object.fromEntries(gente.map(p => [p.id, { p, prog: 0, dias: 0, tardes: 0, minT: 0, almL: 0, temp: 0, extra: 0, aus: 0, detalle: [] }]));
+  const st = Object.fromEntries(gente.map(p => [p.id, { p, prog: 0, dias: 0, tardes: 0, minT: 0, almL: 0, temp: 0, extra: 0, aus: 0, just: 0, detalle: [] }]));
   const porDia = Object.fromEntries(dias.map(d => [d, []]));
   for (const g of regs) {
     if (!ids.has(g.pid)) continue;
     const s = st[g.pid]; s.prog++;
+    const ap = aprobada(g.pid, isoDe(y, m, g.d));
+    if (ap) { s.just++; s.detalle.push({ d: g.d, txt: TIPOS[ap.tipo].estado, cls: 'info' }); continue; }
     if (g.aus) { s.aus++; s.detalle.push({ d: g.d, txt: 'Sin marcar', cls: 'bad' }); continue; }
     s.dias++;
     if (g.entOff > 5) { s.tardes++; s.minT += g.entOff; porDia[g.d].push({ n: s.p.nombre, min: g.entOff }); s.detalle.push({ d: g.d, txt: `Tarde ${g.entOff} min`, cls: 'warn' }); }
@@ -878,7 +928,7 @@ function informesView() {
   const th = (k, l) => `<th class="n sortable" data-sort="${k}" aria-sort="${S.repSort === k ? 'descending' : 'none'}">${l}${S.repSort === k ? ' ↓' : ''}</th>`;
   const rows = ordenada.map(s => `<tr class="clickable ${S.repSel === s.p.id ? 'hl' : ''}" data-sel="${s.p.id}"><td>${personCell(s.p)}</td>
     <td class="n">${s.dias}</td><td class="n">${s.tardes}</td><td class="n">${s.minT}</td><td class="n">${s.tardes ? Math.round(s.minT / s.tardes) : 0}</td>
-    <td class="n">${s.almL}</td><td class="n">${s.temp}</td><td class="n">${h(s.extra)}</td><td class="n">${s.aus}</td>
+    <td class="n">${s.almL}</td><td class="n">${s.temp}</td><td class="n">${h(s.extra)}</td><td class="n">${s.aus}</td><td class="n">${s.just}</td>
     <td class="n"><span class="chip ${pcCls(pc(s))}">${pc(s)} %</span></td></tr>`).join('');
   return `<div class="hello"><div><div class="eyebrow">Intranet · informes de asistencia</div><h1>Asistencia de <em>${nombreMes}</em></h1>
     <p>${info.sede === 'Todas' ? 'Las dos sedes' : `Sede ${info.sede}`}${S.repArea !== 'Todas' ? ` · ${S.repArea}` : ''}, comparado con la malla de cada día. ${info.dias.length} días laborales cerrados.</p></div></div>
@@ -889,6 +939,7 @@ function informesView() {
       ${kpi('warn', info.tot('almL'), 'Almuerzos largos', 'Más de 5 min sobre lo permitido', 'lunch')}
       ${kpi('warn', info.tot('temp'), 'Salidas antes de hora', '', 'out')}
       ${kpi('bad', info.tot('aus'), 'Jornadas sin marcar', 'Programadas en la malla', 'x')}
+      ${kpi('mute', info.tot('just'), 'Ausencias con permiso', 'Vacaciones, permisos e incapacidades aprobadas', 'plane')}
       ${kpi('mute', h(info.tot('extra')), 'Horas extra', 'Salidas 30 min o más después', 'moon')}
     </div>
     <div class="grid-rep">
@@ -900,11 +951,117 @@ function informesView() {
           : '<p class="hint">Nadie llegó tarde este mes.</p>'}</div></section>
     </div>
     ${sel ? `<section class="card detail"><div class="sec-h" style="margin:0"><h3 style="font-size:18px">${sel.p.nombre} · ${nombreMes}</h3><button type="button" class="link" data-sel="0">Cerrar detalle</button></div>
-      <div class="hint">${sel.dias} jornadas · ${sel.tardes} llegadas tarde · ${sel.almL} almuerzos largos · ${sel.temp} salidas antes · ${sel.aus} sin marcar</div>
+      <div class="hint">${sel.dias} jornadas · ${sel.tardes} llegadas tarde · ${sel.almL} almuerzos largos · ${sel.temp} salidas antes · ${sel.aus} sin marcar · ${sel.just} con permiso</div>
       <div class="days">${sel.detalle.length ? sel.detalle.sort((a, b) => a.d - b.d).map(x => `<span class="chip ${x.cls}">${new Date(info.y, info.m, x.d).toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric' })} · ${x.txt}</span>`).join('') : '<span class="chip ok">Sin novedades en el mes</span>'}</div></section>` : ''}
     <section style="margin-top:28px"><div class="sec-h"><h2>Detalle por persona</h2><span class="hint">Toca una columna para ordenar · toca una fila para ver sus días</span></div>
-      <div class="card tablewrap"><table><thead><tr><th>Persona</th><th class="n">Jornadas</th>${th('tardes', 'Llegadas tarde')}${th('minT', 'Min. tarde')}<th class="n">Promedio</th>${th('almL', 'Almuerzos largos')}${th('temp', 'Salidas antes')}${th('extra', 'Horas extra')}${th('aus', 'Sin marcar')}${th('punt', 'Puntualidad')}</tr></thead><tbody>${rows}</tbody></table></div></section>
+      <div class="card tablewrap"><table><thead><tr><th>Persona</th><th class="n">Jornadas</th>${th('tardes', 'Llegadas tarde')}${th('minT', 'Min. tarde')}<th class="n">Promedio</th>${th('almL', 'Almuerzos largos')}${th('temp', 'Salidas antes')}${th('extra', 'Horas extra')}${th('aus', 'Sin marcar')}${th('just', 'Con permiso')}${th('punt', 'Puntualidad')}</tr></thead><tbody>${rows}</tbody></table></div></section>
     <p class="hint" style="margin-top:14px">Prototipo: los meses anteriores se simulan con la malla de esta semana. En la versión real salen de las marcas guardadas.</p>`;
+}
+
+/* ── Solicitudes: vacaciones, permisos e incapacidades ── */
+const TIPOS = {
+  vacaciones: { nombre: 'Vacaciones', estado: 'Vacaciones', i: 'plane', ayuda: 'Días de descanso' },
+  permiso: { nombre: 'Permiso', estado: 'Ausencia con permiso', i: 'clock', ayuda: 'Un día, unas horas o una cita' },
+  incapacidad: { nombre: 'Incapacidad', estado: 'Incapacidad', i: 'heart', ayuda: 'Sube la foto de la incapacidad' }
+};
+const pad2 = n => String(n).padStart(2, '0');
+const isoDe = (y, m, d) => `${y}-${pad2(m + 1)}-${pad2(d)}`;
+const isoOff = off => { const d = new Date(); d.setDate(d.getDate() + off); return isoDe(d.getFullYear(), d.getMonth(), d.getDate()); };
+const isoHoy = () => isoOff(0);
+const fechaCorta = iso => { const [y, m, d] = iso.split('-').map(Number); return new Date(y, m - 1, d).toLocaleDateString('es-CO', { weekday: 'short', day: 'numeric', month: 'short' }); };
+function diasHabiles(a, b) { let n = 0; const [y1, m1, d1] = a.split('-').map(Number), [y2, m2, d2] = b.split('-').map(Number); for (let f = new Date(y1, m1 - 1, d1), e = new Date(y2, m2 - 1, d2); f <= e; f.setDate(f.getDate() + 1)) if (f.getDay() !== 0) n++; return n; }
+const completa = so => !so.hDesde;
+function aprobada(pid, iso) { return S.solicitudes.find(so => so.pid === pid && so.estado === 'aprobada' && completa(so) && so.desde <= iso && iso <= so.hasta); }
+function puedeAprobar(so) {
+  const r = ROLES[S.role], quien = person(so.pid);
+  if (S.role === 'colaborador' || so.pid === me().id) return false;
+  return S.role === 'gerencia' || quien.sede === r.sede;
+}
+const porAprobar = () => S.solicitudes.filter(so => so.estado === 'pendiente' && puedeAprobar(so));
+function docImg(titulo, linea) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200"><rect width="900" height="1200" fill="#fdfdfb"/><rect x="0" y="0" width="900" height="120" fill="#e8eef6"/>
+    <text x="60" y="78" font-family="Lato, Arial" font-weight="900" font-size="40" fill="#1f3f63">${titulo}</text>
+    <text x="60" y="200" font-family="Jost, Arial" font-size="26" fill="#555f6d">${linea}</text>
+    ${[280, 340, 400, 460, 520, 580, 640].map((y, i) => `<rect x="60" y="${y}" width="${[760, 700, 780, 620, 740, 520, 680][i]}" height="18" rx="9" fill="#e3e9f1"/>`).join('')}
+    <rect x="60" y="760" width="360" height="150" rx="10" fill="none" stroke="#c3d3e6" stroke-width="3" stroke-dasharray="10 8"/>
+    <text x="90" y="845" font-family="Jost, Arial" font-size="24" fill="#8a94a3">Firma y sello médico</text>
+    <text x="60" y="1120" font-family="Jost, Arial" font-size="22" fill="#8a94a3">Documento de ejemplo para el prototipo</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function solCard(so, conAcciones) {
+  const p = person(so.pid), T = TIPOS[so.tipo];
+  const cls = { pendiente: 'warn', aprobada: 'ok', rechazada: 'bad' }[so.estado];
+  const est = { pendiente: 'Pendiente', aprobada: 'Aprobada', rechazada: 'Rechazada' }[so.estado];
+  const rango = so.desde === so.hasta ? fechaCorta(so.desde) : `${fechaCorta(so.desde)} al ${fechaCorta(so.hasta)}`;
+  const dur = so.hDesde ? `${so.hDesde}–${so.hHasta}` : `${diasHabiles(so.desde, so.hasta)} ${diasHabiles(so.desde, so.hasta) === 1 ? 'día' : 'días'}`;
+  const adj = so.adjuntos.length ? `<div class="thumbs">${so.adjuntos.map((a, i) => a.src
+      ? `<button type="button" class="thumb sm" data-lbs="${so.id}:${i}" aria-label="Ver ${esc(a.nombre)}"><img src="${a.src}" alt=""></button>`
+      : `<button type="button" class="file" data-lbs="${so.id}:${i}">${ico('file')} ${esc(a.nombre)}</button>`).join('')}</div>` : '';
+  return `<article class="card sol" id="sol-${so.id}">
+    <div class="sol-h"><div style="display:flex;gap:12px;align-items:center"><span class="sq">${ico(T.i)}</span><div>
+      <h3>${T.nombre}${conAcciones || S.role !== 'colaborador' ? ` · ${esc(p.nombre)}` : ''}</h3>
+      <div class="meta">${rango} · ${dur}${conAcciones || S.role !== 'colaborador' ? ` · ${esc(p.area)} · ${esc(p.sede)}` : ''}</div></div></div>
+      <span class="chip ${cls}">${est}</span></div>
+    ${so.motivo ? `<p>${esc(so.motivo)}</p>` : ''}${adj}
+    ${so.estado !== 'pendiente' ? `<div class="meta">${est} por ${esc(so.por)}${so.comentario ? ` · "${esc(so.comentario)}"` : ''}</div>` : `<div class="meta">Enviada ${esc(so.creada)}${so.adjuntos.length ? '' : ' · sin soporte adjunto'}</div>`}
+    ${conAcciones ? `<div class="acts"><input id="cm-${so.id}" placeholder="Comentario (opcional)" aria-label="Comentario para ${esc(p.nombre)}">
+      <button type="button" class="btn sm teal" data-aprobar="${so.id}">${ico('check')} Aprobar</button>
+      <button type="button" class="btn sm danger" data-rechazar="${so.id}">Rechazar</button></div>` : ''}
+  </article>`;
+}
+function misSolicitudesMini() {
+  const mias = S.solicitudes.filter(so => so.pid === me().id).slice(0, 2);
+  return `<section><div class="sec-h"><h2>Mis solicitudes</h2><button type="button" class="link" data-view="solicitudes">Nueva solicitud</button></div>
+    <div class="news">${mias.length ? mias.map(so => solCard(so, false)).join('') : `<div class="card" style="padding:16px 18px;color:var(--ink-2);font-size:14px">Aquí verás tus vacaciones, permisos e incapacidades. Toca <b>Nueva solicitud</b> para pedir una.</div>`}</div></section>`;
+}
+function solForm() {
+  const tipo = S.solTipo, hoy = isoHoy();
+  return `<section><div class="sec-h"><h2>Nueva solicitud</h2></div>
+    <form class="card compose" id="solForm" novalidate>
+      <fieldset style="border:0;padding:0;margin:0"><legend class="field" style="font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px">¿Qué necesitas?</legend>
+        <div class="tipos">${Object.entries(TIPOS).map(([k, t]) => `<label><input type="radio" name="sTipo" value="${k}" ${k === tipo ? 'checked' : ''}><span class="sq" style="width:36px;height:36px">${ico(t.i)}</span><b>${t.nombre}</b>${t.ayuda}</label>`).join('')}</div></fieldset>
+      <div class="row2"><div class="field"><label for="sDesde">Desde</label><input id="sDesde" type="date" value="${hoy}"></div>
+        <div class="field"><label for="sHasta">Hasta</label><input id="sHasta" type="date" value="${hoy}"></div></div>
+      ${tipo === 'permiso' ? `<div class="row2"><div class="field"><label for="sHd">Hora desde (opcional)</label><input id="sHd" type="time"></div>
+        <div class="field"><label for="sHh">Hora hasta (opcional)</label><input id="sHh" type="time"></div></div>
+        <p class="hint" style="margin:-6px 0 0">Déjalas vacías si el permiso es por el día completo.</p>` : ''}
+      <div class="field"><label for="sMot">${tipo === 'incapacidad' ? 'Diagnóstico o comentario' : 'Motivo'}</label><textarea id="sMot" rows="3" placeholder="${tipo === 'vacaciones' ? 'Ej.: vacaciones de fin de año' : tipo === 'permiso' ? 'Ej.: cita médica, diligencia personal' : 'Ej.: incapacidad por gripe, 2 días'}"></textarea></div>
+      <div class="field"><span style="font-size:14px;font-weight:600;color:var(--navy)">Soporte <span class="hint">(opcional)</span></span>
+        <div class="drop"><label class="btn ghost sm" for="sFile">${ico('clip')} Adjuntar foto o documento</label><input id="sFile" type="file" accept="image/*,application/pdf" multiple>
+          <span>${tipo === 'incapacidad' ? 'Toma una foto clara de la incapacidad.' : 'Por ejemplo, la cita médica o el soporte del permiso.'}</span></div>
+        <div class="thumbs" id="solThumbs">${solThumbs()}</div></div>
+      <div><button class="btn teal" type="submit">${ico('check')} Enviar solicitud</button></div>
+    </form></section>`;
+}
+function solThumbs() {
+  return S.solDraft.map((a, i) => a.src
+    ? `<span class="thumb sm"><img src="${a.src}" alt="${esc(a.nombre)}"><button type="button" class="x" data-squitar="${i}" aria-label="Quitar ${esc(a.nombre)}">×</button></span>`
+    : `<span class="file">${ico('file')} ${esc(a.nombre)} <button type="button" class="link" data-squitar="${i}" aria-label="Quitar ${esc(a.nombre)}">×</button></span>`).join('');
+}
+function solicitudesView() {
+  const esGer = S.role === 'gerencia', aprob = S.role !== 'colaborador';
+  const modulo = esGer ? `<div class="card modcard"><div><b style="color:var(--navy);font-family:var(--f-display);font-size:17px">Módulo de solicitudes</b>
+      <p>${S.modSol ? 'Activo: el equipo ve "Solicitudes" en su menú y en su inicio, y puede pedir vacaciones, permisos e incapacidades.' : 'Apagado: el equipo no ve la opción de solicitudes. Lo ya aprobado se conserva.'}</p></div>
+      <label class="switch"><input type="checkbox" id="modSol" ${S.modSol ? 'checked' : ''}><span class="tr"></span>${S.modSol ? 'Activo' : 'Apagado'}</label></div>` : '';
+  const head = `<div class="hello"><div><div class="eyebrow">Intranet · solicitudes</div><h1>${aprob ? 'Vacaciones, permisos e <em>incapacidades</em>' : '¿Necesitas un <em>permiso?</em>'}</h1>
+    <p>${aprob ? (esGer ? 'Apruebas las solicitudes de las dos sedes y las de las directoras.' : `Apruebas las solicitudes de la sede ${ROLES[S.role].sede}. Las tuyas las aprueba la gerente.`) : 'Pide vacaciones o un permiso, o sube tu incapacidad. Tu líder o la gerente la revisan y te avisamos aquí.'}</p></div></div>`;
+  if (!S.modSol && !esGer) return head + `<div class="card" style="padding:20px;color:var(--ink-2)">La gerencia aún no ha activado las solicitudes.</div>`;
+  if (!aprob) {
+    const mias = S.solicitudes.filter(so => so.pid === me().id);
+    return head + `<div class="grid-home"><div class="col">${solForm()}</div><div class="col"><section><div class="sec-h"><h2>Mis solicitudes</h2></div>
+      <div class="news">${mias.length ? mias.map(so => solCard(so, false)).join('') : '<div class="card" style="padding:16px 18px;color:var(--ink-2)">Todavía no has enviado solicitudes.</div>'}</div></section></div></div>`;
+  }
+  const pend = porAprobar();
+  const visibles = S.solicitudes.filter(so => so.estado !== 'pendiente' && (esGer || person(so.pid).sede === ROLES[S.role].sede));
+  const mias = S.solicitudes.filter(so => so.pid === me().id);
+  return head + modulo + `<div class="grid-home"><div class="col">
+      <section><div class="sec-h"><h2>Por aprobar <span class="hint num">(${pend.length})</span></h2></div>
+        <div class="news">${pend.length ? pend.map(so => solCard(so, true)).join('') : '<div class="card" style="padding:16px 18px;color:var(--ink-2)">No hay solicitudes pendientes.</div>'}</div></section>
+      <section><div class="sec-h"><h2>Historial</h2></div><div class="news">${visibles.map(so => solCard(so, false)).join('') || '<p class="hint">Sin historial todavía.</p>'}</div></section></div>
+    <div class="col">${esGer ? `<section><div class="sec-h"><h2>Cómo funciona</h2></div><div class="card" style="padding:18px 20px;color:var(--ink-2);font-size:14px;display:grid;gap:8px">
+      <div>1. El funcionario envía la solicitud. El soporte (foto o documento) es opcional.</div>
+      <div>2. La directora de su sede o la gerente la aprueba o la rechaza, con un comentario si quiere.</div>
+      <div>3. Lo aprobado aparece en la asistencia y en los informes como <b>ausencia con permiso</b>, <b>vacaciones</b> o <b>incapacidad</b>, y no cuenta como falta.</div></div></section>` : `<section><div class="sec-h"><h2>Mis solicitudes</h2></div><div class="news">${mias.map(so => solCard(so, false)).join('') || '<div class="card" style="padding:16px 18px;color:var(--ink-2);font-size:14px">Las tuyas las aprueba la gerente.</div>'}</div></section>${solForm()}`}</div></div>`;
 }
 
 /* ── Eventos ── */
@@ -920,6 +1077,16 @@ function toast(msg, rerender = true) {
 document.addEventListener('submit', e => {
   e.preventDefault();
   if (e.target.id === 'loginForm') { S.logged = true; render(); return; }
+  if (e.target.id === 'solForm') {
+    const desde = document.getElementById('sDesde').value, hasta = document.getElementById('sHasta').value;
+    if (!desde || !hasta) { toast('Elige las fechas de la solicitud.', false); return; }
+    if (hasta < desde) { toast('La fecha "hasta" no puede ser antes de "desde".', false); return; }
+    const hd = document.getElementById('sHd')?.value || '', hh = document.getElementById('sHh')?.value || '';
+    if ((hd && !hh) || (!hd && hh)) { toast('Completa las dos horas del permiso o deja ambas vacías.', false); return; }
+    S.solicitudes.unshift({ id: Date.now(), pid: me().id, tipo: S.solTipo, desde, hasta, hDesde: hd, hHasta: hh, motivo: document.getElementById('sMot').value.trim(),
+      adjuntos: S.solDraft.splice(0), estado: 'pendiente', creada: 'ahora' });
+    toast('Solicitud enviada. Te avisaremos aquí cuando la revisen.'); return;
+  }
   if (e.target.id === 'compose') {
     const tit = document.getElementById('cTit').value.trim(), txt = document.getElementById('cTxt').value.trim();
     if (!tit || !txt) { toast('Escribe un título y un mensaje para publicar.', false); return; }
@@ -943,9 +1110,18 @@ document.addEventListener('click', e => {
     document.getElementById(`${k}-${id}`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
     return;
   }
-  if (t.dataset.lb) { const [c, i] = t.dataset.lb.split(':'); S.lb = { cid: +c, i: +i }; render(); return; }
+  if (t.dataset.lb) { const [c, i] = t.dataset.lb.split(':'); const co = S.comunicados.find(x => x.id === +c); S.lb = { titulo: co.titulo, items: co.imgs, i: +i }; render(); return; }
+  if (t.dataset.lbs) { const [c, i] = t.dataset.lbs.split(':'); const so = S.solicitudes.find(x => x.id === +c); const im = so.adjuntos[+i];
+    if (!im.src) { toast('En la versión real se abre el PDF en una pestaña nueva.', false); return; }
+    const items = so.adjuntos.filter(a => a.src); S.lb = { titulo: `${TIPOS[so.tipo].nombre} · ${person(so.pid).nombre}`, items, i: items.indexOf(im) }; render(); return; }
   if (t.dataset.lbclose) { S.lb = null; render(); return; }
-  if (t.dataset.lbmove) { const n = S.comunicados.find(x => x.id === S.lb.cid).imgs.length; S.lb.i = (S.lb.i + +t.dataset.lbmove + n) % n; render(); return; }
+  if (t.dataset.lbmove) { const n = S.lb.items.length; S.lb.i = (S.lb.i + +t.dataset.lbmove + n) % n; render(); return; }
+  if (t.dataset.squitar) { S.solDraft.splice(+t.dataset.squitar, 1); document.getElementById('solThumbs').innerHTML = solThumbs(); return; }
+  if (t.dataset.aprobar || t.dataset.rechazar) {
+    const id = +(t.dataset.aprobar || t.dataset.rechazar), so = S.solicitudes.find(x => x.id === id);
+    so.estado = t.dataset.aprobar ? 'aprobada' : 'rechazada'; so.por = me().nombre; so.comentario = document.getElementById(`cm-${id}`)?.value.trim() || '';
+    toast(`${TIPOS[so.tipo].nombre} de ${person(so.pid).nombre} ${so.estado}.${so.estado === 'aprobada' && completa(so) ? ' Ya aparece en la asistencia y en los informes.' : ''}`); return;
+  }
   if (t.dataset.quitar) { S.draft.splice(+t.dataset.quitar, 1); document.getElementById('draftThumbs').innerHTML = draftThumbs(); return; }
   if (t.dataset.sel !== undefined) { const v = +t.dataset.sel; S.repSel = v && S.repSel !== v ? v : null; render(); return; }
   if (t.dataset.sort) { S.repSort = t.dataset.sort; render(); return; }
@@ -971,6 +1147,16 @@ document.addEventListener('change', e => {
   if (el.id === 'rMes') { S.mes = el.value; S.repSel = null; render(); return; }
   if (el.id === 'rSede') { S.repSede = el.value; S.repSel = null; render(); return; }
   if (el.id === 'rArea') { S.repArea = el.value; S.repSel = null; render(); return; }
+  if (el.id === 'modSol') { S.modSol = el.checked; toast(S.modSol ? 'Solicitudes activadas para todo el equipo.' : 'Solicitudes apagadas. El equipo ya no ve la opción.'); return; }
+  if (el.name === 'sTipo') { S.solTipo = el.value; S.solDraft = []; render(); return; }
+  if (el.id === 'sFile') {
+    [...el.files].forEach(f => {
+      if (f.type.startsWith('image/')) { const fr = new FileReader(); fr.onload = () => { S.solDraft.push({ nombre: f.name, src: fr.result }); const d = document.getElementById('solThumbs'); if (d) d.innerHTML = solThumbs(); }; fr.readAsDataURL(f); }
+      else { S.solDraft.push({ nombre: f.name }); }
+    });
+    const d = document.getElementById('solThumbs'); if (d) d.innerHTML = solThumbs();
+    el.value = ''; return;
+  }
   if (el.id === 'cImg') {
     const files = [...el.files].filter(f => f.type.startsWith('image/'));
     files.forEach(f => { const fr = new FileReader(); fr.onload = () => { S.draft.push({ nombre: f.name, src: fr.result }); const d = document.getElementById('draftThumbs'); if (d) d.innerHTML = draftThumbs(); }; fr.readAsDataURL(f); });
@@ -1003,7 +1189,7 @@ document.addEventListener('focusin', e => {
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') { if (S.lb) { S.lb = null; render(); } const r = document.getElementById('qres'); if (r) r.hidden = true; }
-  if (S.lb && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { const n = S.comunicados.find(x => x.id === S.lb.cid).imgs.length; S.lb.i = (S.lb.i + (e.key === 'ArrowRight' ? 1 : -1) + n) % n; render(); }
+  if (S.lb && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { const n = S.lb.items.length; S.lb.i = (S.lb.i + (e.key === 'ArrowRight' ? 1 : -1) + n) % n; render(); }
 });
 document.addEventListener('mousemove', e => {
   const tip = document.getElementById('tip'); if (!tip) return;
@@ -1027,6 +1213,20 @@ setInterval(() => {
 }, 1000);
 
 if (realMin() < 7 * 60 || realMin() >= 20 * 60) S.horaSim = 10 * 60 + 15;
+(() => {
+  const d = new Date(), y = d.getFullYear(), m = d.getMonth();
+  const prev = new Date(y, m - 1, 1), py = prev.getFullYear(), pm = prev.getMonth();
+  const jue = (() => { const x = new Date(); const off = (4 - x.getDay() + 7) % 7; return off; })();
+  S.solicitudes = [
+    { id: 1, pid: 5, tipo: 'incapacidad', desde: isoOff(0), hasta: isoOff(1), motivo: 'Incapacidad por gripe, 2 días. Adjunto la incapacidad de la EPS.', adjuntos: [{ nombre: 'incapacidad-eps.jpg', src: docImg('Incapacidad médica', 'EPS · 2 días de incapacidad') }], estado: 'pendiente', creada: 'hoy, 7:42' },
+    { id: 2, pid: 2, tipo: 'permiso', desde: isoOff(5), hasta: isoOff(5), hDesde: '14:00', hHasta: '16:00', motivo: 'Cita médica de control.', adjuntos: [{ nombre: 'cita-medica.pdf' }], estado: 'pendiente', creada: 'ayer, 16:10' },
+    { id: 3, pid: 9, tipo: 'vacaciones', desde: isoOff(30), hasta: isoOff(37), motivo: 'Vacaciones programadas con la directora.', adjuntos: [], estado: 'pendiente', creada: 'ayer, 11:05' },
+    { id: 4, pid: 7, tipo: 'vacaciones', desde: isoOff(jue - (jue > 1 ? 7 : 0)), hasta: isoOff(jue - (jue > 1 ? 7 : 0) + 1), motivo: 'Puente de vacaciones.', adjuntos: [], estado: 'aprobada', por: 'Carolina Peña', comentario: '', creada: 'hace 2 semanas' },
+    { id: 5, pid: 3, tipo: 'incapacidad', desde: isoDe(py, pm, 8), hasta: isoDe(py, pm, 9), motivo: 'Incapacidad por migraña.', adjuntos: [{ nombre: 'incapacidad.jpg', src: docImg('Incapacidad médica', 'EPS · 2 días de incapacidad') }], estado: 'aprobada', por: 'Natalia Suárez', comentario: '¡Que te mejores!', creada: `${isoDe(py, pm, 8)}` },
+    { id: 6, pid: 6, tipo: 'permiso', desde: isoDe(py, pm, 19), hasta: isoDe(py, pm, 19), motivo: 'Diligencia personal en la notaría.', adjuntos: [], estado: 'aprobada', por: 'Natalia Suárez', comentario: '', creada: `${isoDe(py, pm, 17)}` },
+    { id: 7, pid: 11, tipo: 'permiso', desde: isoOff(-3), hasta: isoOff(-3), motivo: 'Asunto familiar.', adjuntos: [], estado: 'rechazada', por: 'Rosa Peralta', comentario: 'Ese día hay cierre; lo movemos a la otra semana.', creada: 'hace 5 días' }
+  ];
+})();
 S.comunicados.forEach(c => {
   if (c.imgs === 'TARIFA') c.imgs = [{ nombre: 'tarifario-riviera-maya.png', src: tablaImg() }];
   if (c.imgs === 'FAM') c.imgs = [
