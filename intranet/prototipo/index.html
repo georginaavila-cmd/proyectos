@@ -212,8 +212,17 @@ tr.hl td { background: var(--teal-050); }
 .filters .field { gap: 4px; }
 .filters .field label { font-size: 12px; color: var(--ink-3); font-family: var(--f-display); letter-spacing: .1em; text-transform: uppercase; font-weight: 700; }
 .filters select { padding: 9px 12px; border: 1px solid var(--line); border-radius: 8px; background: #fff; min-width: 150px; }
-.kpis.six { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
-.kpis.six .kpi b, .kpis.six .kpi span { display: block; }
+.kpis.six { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.kpis.six .kpi { align-items: flex-start; }
+.kpis.six .kpi b { white-space: nowrap; font-size: 28px; }
+.kpis.six .kpi.hero { grid-row: span 2; flex-direction: column; justify-content: space-between; gap: 18px; padding: 20px 22px; }
+.kpis.six .kpi.hero b { font-size: 52px; letter-spacing: -.02em; margin-top: 4px; }
+.kpis.six .kpi.hero .lbl { font-size: 16px; }
+.meter { width: 100%; }
+.meter .track2 { height: 10px; border-radius: 999px; background: var(--blue-050); overflow: hidden; border: 1px solid var(--line); }
+.meter .track2 i { display: block; height: 100%; border-radius: 999px; }
+.meter .scale { display: flex; justify-content: space-between; font-size: 12px; color: var(--ink-3); margin-top: 6px; }
+.kpis.six .kpi div > b, .kpis.six .kpi div > span:not(.sq) { display: block; }
 .kpis.six .kpi b { margin-bottom: 2px; }
 .kpi small { display: block; font-size: 12px; color: var(--ink-3); }
 .grid-rep { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-bottom: 28px; }
@@ -325,6 +334,10 @@ tr.clickable:hover td { background: var(--blue-050); }
 .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--navy); color: #fff; padding: 12px 20px; border-radius: 10px; font-size: 14px; box-shadow: 0 8px 24px rgba(31,63,99,.25); z-index: 50; max-width: calc(100% - 32px); border-left: 4px solid var(--teal); }
 
 @media (max-width: 960px) {
+  .kpis.six { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .kpis.six .kpi.hero { grid-row: auto; grid-column: span 2; }
+  .kpis.six .kpi:not(.hero) { flex-direction: column; gap: 10px; }
+  .kpis.six .kpi:not(.hero) .sq { width: 38px; height: 38px; }
   .grid-rep { grid-template-columns: minmax(0, 1fr); }
   .search { flex-basis: 100%; order: 4; }
   .grid-home { grid-template-columns: minmax(0, 1fr); }
@@ -948,7 +961,9 @@ function informesView() {
     <p>${info.sede === 'Todas' ? 'Las dos sedes' : `Sede ${info.sede}`}${S.repArea !== 'Todas' ? ` · ${S.repArea}` : ''}, comparado con la malla de cada día. ${info.dias.length} días laborales cerrados.</p></div></div>
     ${filtrosRep}
     <div class="kpis six">
-      ${kpi(pcCls(punt), `${punt} %`, 'Puntualidad del equipo', `${dias} jornadas marcadas`, 'check')}
+      <div class="card kpi hero"><div style="display:flex;gap:14px;align-items:center"><span class="sq ${pcCls(punt)}">${ico('check')}</span><span class="lbl">Puntualidad del equipo</span></div>
+        <div><b class="num">${punt} %</b><small>${dias - tardes} de ${dias} jornadas marcadas empezaron a tiempo</small></div>
+        <div class="meter" aria-hidden="true"><div class="track2"><i style="width:${punt}%;background:var(--${pcCls(punt) === 'ok' ? 'ok' : pcCls(punt) === 'warn' ? 'teal' : 'bad'})"></i></div><div class="scale"><span>0 %</span><span>Meta 95 %</span><span>100 %</span></div></div></div>
       ${kpi('warn', tardes, 'Llegadas tarde', `${info.tot('minT')} min de retraso en total`, 'clock')}
       ${kpi('warn', info.tot('almL'), 'Almuerzos largos', 'Más de 5 min sobre lo permitido', 'lunch')}
       ${kpi('warn', info.tot('temp'), 'Salidas antes de hora', '', 'out')}
