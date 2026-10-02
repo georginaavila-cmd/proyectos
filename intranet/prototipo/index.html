@@ -431,21 +431,21 @@ const PEOPLE = [
   { id: 6, nombre: 'Felipe Arango', area: 'Comercial / KAM', sede: 'Bogotá' },
   { id: 7, nombre: 'María José Cruz', area: 'Administración / Finanzas', sede: 'Bogotá' },
   { id: 8, nombre: 'Carolina Peña', area: 'Dirección / Gerencia', sede: 'Bogotá' },
-  { id: 9, nombre: 'Yoselin Matos', area: 'Comercial / KAM', sede: 'Santo Domingo' },
-  { id: 10, nombre: 'Rosa Peralta', area: 'Operaciones / Reservas', sede: 'Santo Domingo' },
-  { id: 11, nombre: 'Miguel Santana', area: 'Operaciones / Reservas', sede: 'Santo Domingo' }
+  { id: 9, nombre: 'Yoselin Matos', area: 'Comercial / KAM', sede: 'República Dominicana' },
+  { id: 10, nombre: 'Rosa Peralta', area: 'Operaciones / Reservas', sede: 'República Dominicana' },
+  { id: 11, nombre: 'Miguel Santana', area: 'Operaciones / Reservas', sede: 'República Dominicana' }
 ];
 const ROLES = {
   colaborador: { persona: 1, rol: 'Colaboradora', puedeEditar: () => false },
   dirCO: { persona: 4, rol: 'Directora de Operaciones Colombia', corto: 'Dir. Operaciones CO', sede: 'Bogotá', puedeEditar: p => p.sede === 'Bogotá' },
-  dirRD: { persona: 10, rol: 'Directora de Operaciones RD', corto: 'Dir. Operaciones RD', sede: 'Santo Domingo', puedeEditar: p => p.sede === 'Santo Domingo' },
+  dirRD: { persona: 10, rol: 'Directora de Operaciones RD', corto: 'Dir. Operaciones RD', sede: 'República Dominicana', puedeEditar: p => p.sede === 'República Dominicana' },
   conta: { persona: 7, rol: 'Contabilidad', puedeEditar: () => false },
   gerencia: { persona: 8, rol: 'Gerente', puedeEditar: () => true }
 };
 const S = {
   logged: false, horaSim: null, q: '', qc: '', hl: null, hlPer: null, lb: null, draft: [], mes: null, repSede: 'Todas', repArea: 'Todas', repSel: null, repSort: 'minT', modSol: true, comFiltro: 'todos', aprobadores: [
     { pid: 4, sede: 'Bogotá', tipos: ['vacaciones', 'permiso', 'incapacidad'], nivel: 'aprobar' },
-    { pid: 10, sede: 'Santo Domingo', tipos: ['vacaciones', 'permiso', 'incapacidad'], nivel: 'aprobar' },
+    { pid: 10, sede: 'República Dominicana', tipos: ['vacaciones', 'permiso', 'incapacidad'], nivel: 'aprobar' },
     { pid: 7, sede: 'Todas', tipos: ['incapacidad'], nivel: 'aprobar' },
     { pid: 5, sede: 'Todas', tipos: ['vacaciones'], nivel: 'ver' }
   ], nuevoAprob: '', solDraft: [], solTipo: 'vacaciones', solies: null, role: 'colaborador', view: 'inicio', filtroArea: 'Todas', filtroSede: 'Todas',
@@ -747,7 +747,7 @@ function filtros() {
   const opt = (arr, v) => arr.map(a => `<option ${a === v ? 'selected' : ''}>${a}</option>`).join('');
   return `<span style="display:flex;gap:8px;flex-wrap:wrap">
     <select id="fArea" aria-label="Área">${opt(['Todas', ...AREAS], S.filtroArea)}</select>
-    <select id="fSede" aria-label="Sede">${opt(['Todas', 'Bogotá', 'Santo Domingo'], S.filtroSede)}</select></span>`;
+    <select id="fSede" aria-label="Sede">${opt(['Todas', 'Bogotá', 'República Dominicana'], S.filtroSede)}</select></span>`;
 }
 const filtrados = () => PEOPLE.filter(p => (S.filtroArea === 'Todas' || p.area === S.filtroArea) && (S.filtroSede === 'Todas' || p.sede === S.filtroSede));
 const personCell = p => `<div class="person"><div class="avatar soft">${initials(p.nombre)}</div><div><b>${p.nombre}</b><small>${p.area} · ${p.sede}</small></div></div>`;
@@ -794,7 +794,7 @@ function comunicadosView() {
     <form class="card compose" id="compose">
       <div class="field"><label for="cTit">Título</label><input id="cTit" placeholder="Ej.: Cierre de mes de facturación"></div>
       <div class="field"><label for="cTxt">Mensaje</label><textarea id="cTxt" rows="4" placeholder="Escribe el comunicado"></textarea></div>
-      <div class="row2"><div class="field"><label for="cPara">Para</label><select id="cPara">${['Todo el equipo', ...AREAS, 'Sede Bogotá', 'Sede Santo Domingo'].map(a => `<option>${a}</option>`).join('')}</select></div>
+      <div class="row2"><div class="field"><label for="cPara">Para</label><select id="cPara">${['Todo el equipo', ...AREAS, 'Sede Bogotá', 'Sede República Dominicana'].map(a => `<option>${a}</option>`).join('')}</select></div>
         <div class="field" style="align-content:end;gap:10px">
           <label class="check"><input type="checkbox" id="cReq" checked> Pedir confirmación de lectura</label>
           <label class="check"><input type="checkbox" id="cPin"> Fijar en el inicio</label></div></div>
@@ -997,7 +997,7 @@ function informesView() {
   const opt = (arr, v, f = a => a) => arr.map(a => `<option value="${a}" ${a === v ? 'selected' : ''}>${f(a)}</option>`).join('');
   const filtrosRep = `<div class="filters">
     <div class="field"><label for="rMes">Mes</label><select id="rMes">${opt(mesesDisponibles(), S.mes, k => { const [y, m] = k.split('-'); return `${MESES[m][0].toUpperCase() + MESES[m].slice(1)} ${y}`; })}</select></div>
-    ${r.sede ? `<div class="field"><label>Sede</label><select disabled><option>${r.sede}</option></select></div>` : `<div class="field"><label for="rSede">Sede</label><select id="rSede">${opt(['Todas', 'Bogotá', 'Santo Domingo'], S.repSede)}</select></div>`}
+    ${r.sede ? `<div class="field"><label>Sede</label><select disabled><option>${r.sede}</option></select></div>` : `<div class="field"><label for="rSede">Sede</label><select id="rSede">${opt(['Todas', 'Bogotá', 'República Dominicana'], S.repSede)}</select></div>`}
     <div class="field"><label for="rArea">Área</label><select id="rArea">${opt(['Todas', ...AREAS], S.repArea)}</select></div>
     <span style="flex:1"></span><button class="btn ghost" type="button" data-tool="excel">${ico('file')} Exportar a Excel</button></div>`;
   if (!info.dias.length) return `<div class="hello"><div><div class="eyebrow">Intranet · informes</div><h1>Asistencia de <em>${nombreMes}</em></h1></div></div>${filtrosRep}
@@ -1136,7 +1136,7 @@ function permisosView() {
   const libres = PEOPLE.filter(p => p.id !== ROLES.gerencia.persona && !S.aprobadores.some(a => a.pid === p.id));
   const rows = S.aprobadores.map((a, i) => { const p = person(a.pid);
     return `<tr><td>${personCell(p)}</td>
-      <td><select data-ap="${i}" data-f="sede" aria-label="Sede que revisa ${esc(p.nombre)}">${['Todas', 'Bogotá', 'Santo Domingo'].map(x => `<option value="${x}" ${x === a.sede ? 'selected' : ''}>${x === 'Todas' ? 'Las dos sedes' : x}</option>`).join('')}</select></td>
+      <td><select data-ap="${i}" data-f="sede" aria-label="Sede que revisa ${esc(p.nombre)}">${['Todas', 'Bogotá', 'República Dominicana'].map(x => `<option value="${x}" ${x === a.sede ? 'selected' : ''}>${x === 'Todas' ? 'Las dos sedes' : x}</option>`).join('')}</select></td>
       <td><div class="chk">${TODOS_TIPOS.map(t => `<label><input type="checkbox" data-ap="${i}" data-tipo="${t}" ${a.tipos.includes(t) ? 'checked' : ''}> ${TIPOS[t].nombre}</label>`).join('')}</div></td>
       <td><select data-ap="${i}" data-f="nivel" aria-label="Permiso de ${esc(p.nombre)}"><option value="aprobar" ${a.nivel === 'aprobar' ? 'selected' : ''}>Ver, aprobar y rechazar</option><option value="ver" ${a.nivel === 'ver' ? 'selected' : ''}>Solo ver</option></select></td>
       <td><button type="button" class="btn sm danger" data-apquitar="${i}">Quitar</button></td></tr>`; }).join('');
