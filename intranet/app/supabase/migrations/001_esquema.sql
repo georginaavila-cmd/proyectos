@@ -400,6 +400,13 @@ language sql security definer set search_path = public as $$
   update perfiles set acepto_datos = now() where id = auth.uid() and acepto_datos is null
 $$;
 
+-- Permisos explícitos: el proyecto se crea con "Automatically expose new tables" apagado,
+-- así que solo quien inició sesión llega a las tablas, y aun así las reglas RLS de arriba deciden qué filas ve.
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on all tables in schema public to authenticated;
+grant usage, select on all sequences in schema public to authenticated;
+revoke all on all tables in schema public from anon;
+
 -- Funciones expuestas a la app
 revoke all on function marcar(marca_t) from public, anon;
 grant execute on function marcar(marca_t) to authenticated;

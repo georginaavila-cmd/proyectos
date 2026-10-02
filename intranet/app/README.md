@@ -25,7 +25,7 @@ Están en la base de datos, no solo en la página, así que nadie puede saltárs
 
 ## Puesta en marcha (una sola vez)
 
-1. **Crear el proyecto.** En supabase.com, entra con `georgina.avila@wakanda.travel`, crea un proyecto llamado `intranet-wakanda` y elige la región **East US (North Virginia)**. Guarda la contraseña de la base de datos en un lugar seguro.
+1. **Crear el proyecto.** En supabase.com, entra con `georgina.avila@wakanda.travel` y crea un proyecto llamado `intranet-wakanda`, región **Americas**. En Security: deja marcado "Enable Data API", **desmarca** "Automatically expose new tables" y **marca** "Enable automatic RLS". Guarda la contraseña de la base de datos en un lugar seguro.
 2. **Cargar la base de datos.** En **SQL Editor**, pega y ejecuta, en orden, `001_esquema.sql`, `002_archivos.sql` y `003_datos_iniciales.sql`.
 3. **Desactivar el registro abierto.** En **Authentication → Sign In / Providers**, apaga "Allow new users to sign up". Así solo la administración crea cuentas.
 4. **Crear la función de cuentas.** En **Edge Functions → Deploy a new function → Via Editor**, crea `crear-usuario` y pega el contenido de `supabase/functions/crear-usuario/index.ts`.
