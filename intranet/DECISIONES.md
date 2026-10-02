@@ -10,7 +10,7 @@ Registro de lo que se va definiendo con la agencia. Lo marcado **PENDIENTE** fal
 | Dominio de trabajo | `wakanda.travel`, cuentas de Google compradas para usar AppSheet | Confirmado |
 | Personas al inicio | 11 a 30 | Confirmado |
 | Áreas | Dirección / Gerencia · Comercial / KAM · Operaciones / Reservas · Administración / Finanzas | Confirmado |
-| Sedes | Bogotá, Colombia (`.com.co`) y República Dominicana (`.com.do`; se llamaba "Santo Domingo" en la base de datos hasta el 2 de octubre de 2026), ¿Estados Unidos? (`wakandatravelusa.com`) | **PENDIENTE** confirmar |
+| Sedes | Colombia (`.com.co`, hora de Bogotá) y República Dominicana (`.com.do`). Se llamaban "Bogotá" y "Santo Domingo" hasta el 2 de octubre de 2026, ¿Estados Unidos? (`wakandatravelusa.com`) | **PENDIENTE** confirmar |
 | Sistema de los computadores | **PENDIENTE** (Windows, Mac) | |
 
 ### Inventario de correos (entregado por Georgina Ávila)
