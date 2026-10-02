@@ -81,6 +81,14 @@ Objetivo: que nadie marque desde el celular, la casa o un computador que no es e
 | Directora de Operaciones RD | Malla, turnos y asistencia de la sede Santo Domingo; publicar comunicados; aprobar correcciones |
 | Colaborador | Marcar asistencia, ver la malla, leer comunicados, abrir sus herramientas |
 
+## Infraestructura
+
+| Pieza | Valor |
+|---|---|
+| Supabase · organización | Wakanda Travel (plan gratuito), cuenta `georgina.avila@wakanda.travel` |
+| Supabase · proyecto | https://tlppvxbusfocsgqppnbr.supabase.co · East US (North Virginia) |
+| Exposición automática de tablas | Apagada; permisos explícitos en `001_esquema.sql` |
+
 ## 2. Herramientas a enlazar
 
 | Herramienta | Qué hace | Dónde vive / enlace | Cómo se entra |
